@@ -1,18 +1,16 @@
 # RSolve
 
-A general solver for type checking for programming languages and real world puzzles with complex constraints. 
+A general solver for type checkers of programming languages and real world puzzles with complex constraints. 
 
 
 ## About
 
-A Hello World program could be found at `src/Main.hs` to solve a complex problem.
-
-The descriptions for this problem are presented through following link:
+A Hello World program could be found at `src/Main.hs` which solves a complex problem described with following link:
 
 https://www.zhihu.com/question/68411978/answer/332459717.
 
 
-Also, much easier cases using the same background as above problem (logic constraints described with four options `A, B, C, D`) could be enjoyale:
+Also, much easier cases taking the same background as above problem (logic constraints described with four options `A, B, C, D`) could be enjoyale:
 
 ```haskell
 test2 = do
