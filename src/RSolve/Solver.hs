@@ -1,5 +1,5 @@
-module Rcheck.Solver where
-import Rcheck.BrMonad
+module RSolve.Solver where
+import RSolve.BrMonad
 
 import qualified Data.Set  as S
 import qualified Data.Map  as M

@@ -1,4 +1,4 @@
-name:                Rcheck
+name:                RSolve
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -13,7 +13,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
-executable Rcheck
+executable RSolve
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010

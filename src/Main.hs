@@ -5,7 +5,7 @@ import RSolve.Logic
 import Control.Monad
 import Prelude hiding (not, or, and)
 import qualified Data.Set  as S
-import qualified Data.Map  as M
+import qualified Data.Map  as Ms
 import qualified Data.List as L
 
 nub = L.nub
