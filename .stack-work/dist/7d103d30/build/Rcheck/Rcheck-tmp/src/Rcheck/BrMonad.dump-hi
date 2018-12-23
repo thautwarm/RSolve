@@ -1,0 +1,449 @@
+
+==================== FINAL INTERFACE ====================
+2018-12-23 19:28:15.751582 UTC
+
+interface main:Rcheck.BrMonad 8044
+  interface hash: 86e474671521f712f6a6c61384bd5fd9
+  ABI hash: 8e90abdc1a4a799c3a6fcf1c55375145
+  export-list hash: 8cc780bb56fddbf32ab5dabaae26a071
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: a8c8ef2a137d8f995cc516a8d87c3a65
+  opt_hash: 14e536840aca4e889cad654e6f9b79c1
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Rcheck.BrMonad.getBy
+  Rcheck.BrMonad.putBy
+  Rcheck.BrMonad.reset
+  Rcheck.BrMonad.union
+  Rcheck.BrMonad.Br{Rcheck.BrMonad.Br runBr}
+module dependencies:
+package dependencies: base-4.11.1.0* ghc-prim-0.5.2.0
+                      integer-gmp-1.0.2.0
+orphans: base-4.11.1.0:GHC.Float base-4.11.1.0:GHC.Base
+family instance modules: base-4.11.1.0:Control.Applicative
+                         base-4.11.1.0:Data.Functor.Const
+                         base-4.11.1.0:Data.Functor.Identity base-4.11.1.0:Data.Monoid
+                         base-4.11.1.0:Data.Semigroup.Internal base-4.11.1.0:GHC.Generics
+                         base-4.11.1.0:GHC.IO.Exception
+import  -/  base-4.11.1.0:Control.Monad 60c7bc648329161549cea9b9658c9b81
+import  -/  base-4.11.1.0:Data.Foldable 6cf3e918f22d03c0870804f05cd183d1
+import  -/  base-4.11.1.0:GHC.Base b7dd14d8fe8d606dde5678ea6b0575e9
+import  -/  base-4.11.1.0:Prelude aca391812f777207b15d62bb5b9feb63
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr :: GHC.Base.Applicative (Rcheck.BrMonad.Br s)
+  DFunId
+  {- HasNoCafRefs, Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun: @ s.
+                  @ (Rcheck.BrMonad.Br s)
+                  (Rcheck.BrMonad.$fFunctorBr @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$creturn @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$c<*> @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$cliftA2 @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$c*> @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$c<* @ s) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr1 :: a -> Rcheck.BrMonad.Br s (b -> a)
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,U>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ b @ a @ s (x1 :: a) ->
+                 let {
+                   a1 :: b -> a {- Arity: 1 -} = \ (ds :: b) -> x1
+                 } in
+                 Rcheck.BrMonad.Br
+                   @ s
+                   @ (b -> a)
+                   (\ (s1 :: s) ->
+                    GHC.Types.:
+                      @ (b -> a, s)
+                      (a1, s1)
+                      (GHC.Types.[] @ (b -> a, s)))) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$c*> ::
+    Rcheck.BrMonad.Br s a
+    -> Rcheck.BrMonad.Br s b -> Rcheck.BrMonad.Br s b
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(C(U))><L,U(C(U))>m,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (a1 :: Rcheck.BrMonad.Br s a)
+                   (a2 :: Rcheck.BrMonad.Br s b) ->
+                 Rcheck.BrMonad.$fApplicativeBr_$c<*>
+                   @ s
+                   @ b
+                   @ b
+                   (Rcheck.BrMonad.$fApplicativeBr_$c<$
+                      @ s
+                      @ (b -> b)
+                      @ a
+                      (GHC.Base.breakpoint @ b)
+                      a1)
+                   a2) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$c<$ ::
+    a -> Rcheck.BrMonad.Br s b -> Rcheck.BrMonad.Br s a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><L,U(C(U))>m,
+     Inline: [0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ s @ a @ b (w :: a) (w1 :: Rcheck.BrMonad.Br s b) ->
+                 case Rcheck.BrMonad.$w$c<$ @ s @ a @ b w w1 of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ s @ a ww1 }) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$c<* ::
+    Rcheck.BrMonad.Br s a
+    -> Rcheck.BrMonad.Br s b -> Rcheck.BrMonad.Br s a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(C(U))><L,U(C(U))>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ s @ a @ b (x :: Rcheck.BrMonad.Br s a) ->
+                 Rcheck.BrMonad.$fApplicativeBr_$c<*>
+                   @ s
+                   @ b
+                   @ a
+                   (Rcheck.BrMonad.$fApplicativeBr_$c>>=
+                      @ s
+                      @ a
+                      @ (b -> a)
+                      x
+                      (Rcheck.BrMonad.$fApplicativeBr1 @ b @ a @ s))) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$c<*> ::
+    Rcheck.BrMonad.Br s (a -> b)
+    -> Rcheck.BrMonad.Br s a -> Rcheck.BrMonad.Br s b
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(C(U))><L,U(C(U))>m,
+     Inline: [0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (w :: Rcheck.BrMonad.Br s (a -> b))
+                   (w1 :: Rcheck.BrMonad.Br s a) ->
+                 case Rcheck.BrMonad.$w$c<*> @ s @ a @ b w w1 of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ s @ b ww1 }) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$c>>= ::
+    Rcheck.BrMonad.Br s a
+    -> (a -> Rcheck.BrMonad.Br s b) -> Rcheck.BrMonad.Br s b
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <L,U(C(U))><L,C(U(1*C1(U)))>m, Inline: [0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (w :: Rcheck.BrMonad.Br s a)
+                   (w1 :: a -> Rcheck.BrMonad.Br s b) ->
+                 case Rcheck.BrMonad.$w$c>>= @ s @ a @ b w w1 of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ s @ b ww1 }) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$cfmap ::
+    (a -> b) -> Rcheck.BrMonad.Br s a -> Rcheck.BrMonad.Br s b
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,C(U)><L,U(C(U))>m,
+     Inline: [0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ s @ a @ b (w :: a -> b) (w1 :: Rcheck.BrMonad.Br s a) ->
+                 case Rcheck.BrMonad.$w$cfmap @ s @ a @ b w w1 of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ s @ b ww1 }) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$cliftA2 ::
+    (a -> b -> c)
+    -> Rcheck.BrMonad.Br s a
+    -> Rcheck.BrMonad.Br s b
+    -> Rcheck.BrMonad.Br s c
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,C(U)><L,U(C(U))>,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   @ c
+                   (f1 :: a -> b -> c)
+                   (x :: Rcheck.BrMonad.Br s a) ->
+                 Rcheck.BrMonad.$fApplicativeBr_$c<*>
+                   @ s
+                   @ b
+                   @ c
+                   (Rcheck.BrMonad.$fApplicativeBr_$cfmap @ s @ a @ (b -> c) f1 x)) -}
+96a605991104d8254cd6ca63879be779
+  $fApplicativeBr_$creturn :: a -> Rcheck.BrMonad.Br s a
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,U>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ s @ a (a1 :: a) ->
+                 Rcheck.BrMonad.Br
+                   @ s
+                   @ a
+                   (\ (s1 :: s) ->
+                    GHC.Types.: @ (a, s) (a1, s1) (GHC.Types.[] @ (a, s)))) -}
+96a605991104d8254cd6ca63879be779
+  $fFunctorBr :: GHC.Base.Functor (Rcheck.BrMonad.Br s)
+  DFunId
+  {- HasNoCafRefs, Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun: @ s.
+                  @ (Rcheck.BrMonad.Br s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$cfmap @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$c<$ @ s) -}
+96a605991104d8254cd6ca63879be779
+  $fMonadBr :: GHC.Base.Monad (Rcheck.BrMonad.Br s)
+  DFunId
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun: @ s.
+                  @ (Rcheck.BrMonad.Br s)
+                  (Rcheck.BrMonad.$fApplicativeBr @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$c>>= @ s)
+                  (Rcheck.BrMonad.$fMonadBr_$c>> @ s)
+                  (Rcheck.BrMonad.$fApplicativeBr_$creturn @ s)
+                  (\ @ a ->
+                   GHC.Err.errorWithoutStackTrace
+                     @ 'GHC.Types.LiftedRep
+                     @ (Rcheck.BrMonad.Br s a)) -}
+96a605991104d8254cd6ca63879be779
+  $fMonadBr_$c>> ::
+    Rcheck.BrMonad.Br s a
+    -> Rcheck.BrMonad.Br s b -> Rcheck.BrMonad.Br s b
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(C(U))><L,U(C(U))>m,
+     Inline: (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (m1 :: Rcheck.BrMonad.Br s a)
+                   (k :: Rcheck.BrMonad.Br s b) ->
+                 Rcheck.BrMonad.$fApplicativeBr_$c>>=
+                   @ s
+                   @ a
+                   @ b
+                   m1
+                   (\ (ds :: a) -> k)) -}
+e4e1d3d94a74a81bf212bb62625f2d54
+  $tc'Br :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   1975476972292048312##
+                   9803975974136861896##
+                   Rcheck.BrMonad.$trModule
+                   Rcheck.BrMonad.$tc'Br2
+                   2#
+                   Rcheck.BrMonad.$tc'Br1) -}
+02530d0d3d1007cd42e32986dd4ab14d
+  $tc'Br1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+3766d23ad43122f765671432470a5b02
+  $tc'Br2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.BrMonad.$tc'Br3) -}
+6949d0d40d31cef2b514af46befcefaf
+  $tc'Br3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'Br"#) -}
+847c03bb6f87b7a1bf0dd7db73f383ce
+  $tcBr :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   14798523462879397448##
+                   16076854092428368182##
+                   Rcheck.BrMonad.$trModule
+                   Rcheck.BrMonad.$tcBr1
+                   0#
+                   GHC.Types.krep$*->*->*) -}
+432328e6b2d466d434297ad0641414de
+  $tcBr1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.BrMonad.$tcBr2) -}
+6c927ce1ba6e61186e6fa555b0518f5b
+  $tcBr2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Br"#) -}
+c75e6157c42f44729211104b3f758457
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Rcheck.BrMonad.$trModule3
+                   Rcheck.BrMonad.$trModule1) -}
+db155c6a1a234b25a4a088ed5f6ff069
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.BrMonad.$trModule2) -}
+ec7f82de0a3c3206027b24fa9931df5e
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Rcheck.BrMonad"#) -}
+286dea6995fc3b66835412b2a05bf5e6
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.BrMonad.$trModule4) -}
+c0061a961f2c3400bdb161775cb44aa6
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("main"#) -}
+96a605991104d8254cd6ca63879be779
+  $w$c<$ :: a -> Rcheck.BrMonad.Br s b -> (# s -> [(a, s)] #)
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><L,U(C(U))>,
+     Inline: [0],
+     Unfolding: (\ @ s @ a @ b (w :: a) (w1 :: Rcheck.BrMonad.Br s b) ->
+                 let {
+                   lvl1 :: s -> [(a, s)]
+                     {- Arity: 1, Strictness: <L,U>,
+                        Unfolding: InlineRule (1, True, False)
+                                   (\ (s1 :: s) ->
+                                    GHC.Types.: @ (a, s) (w, s1) (GHC.Types.[] @ (a, s))) -}
+                   = \ (s1 :: s) ->
+                     GHC.Types.: @ (a, s) (w, s1) (GHC.Types.[] @ (a, s))
+                 } in
+                 let {
+                   lvl2 :: Rcheck.BrMonad.Br s a = Rcheck.BrMonad.Br @ s @ a lvl1
+                 } in
+                 Rcheck.BrMonad.$w$c>>= @ s @ b @ a w1 (\ (x1 :: b) -> lvl2)) -}
+96a605991104d8254cd6ca63879be779
+  $w$c<*> ::
+    Rcheck.BrMonad.Br s (a -> b)
+    -> Rcheck.BrMonad.Br s a -> (# s -> [(b, s)] #)
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(C(U))><L,U(C(U))>,
+     Inline: [0],
+     Unfolding: (\ @ s
+                   @ a
+                   @ b
+                   (w :: Rcheck.BrMonad.Br s (a -> b))
+                   (w1 :: Rcheck.BrMonad.Br s a) ->
+                 Rcheck.BrMonad.$w$c>>=
+                   @ s
+                   @ (a -> b)
+                   @ b
+                   w
+                   (\ (x1 :: a -> b) ->
+                    letrec {
+                      go :: [(a, s)] -> [(b, s)] {- Arity: 1, Strictness: <S,1*U> -}
+                      = \ (ds :: [(a, s)]) ->
+                        case ds of wild {
+                          [] -> GHC.Types.[] @ (b, s)
+                          : y ys
+                          -> case y of wild1 { (,) a1 s1 ->
+                             GHC.Base.++_$s++
+                               @ (b, s)
+                               (go ys)
+                               (x1 a1, s1)
+                               (GHC.Types.[] @ (b, s)) } }
+                    } in
+                    Rcheck.BrMonad.Br
+                      @ s
+                      @ b
+                      (\ (s1 :: s) ->
+                       case w1 of wild { Rcheck.BrMonad.Br ds -> go (ds s1) }))) -}
+96a605991104d8254cd6ca63879be779
+  $w$c>>= ::
+    Rcheck.BrMonad.Br s a
+    -> (a -> Rcheck.BrMonad.Br s b) -> (# s -> [(b, s)] #)
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <L,U(C(U))><L,C(U(1*C1(U)))>, Inline: [0],
+     Unfolding: (\ @ s
+                   @ a
+                   @ b
+                   (w :: Rcheck.BrMonad.Br s a)
+                   (w1 :: a -> Rcheck.BrMonad.Br s b) ->
+                 letrec {
+                   go :: [(a, s)] -> [(b, s)] {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ (ds :: [(a, s)]) ->
+                     case ds of wild {
+                       [] -> GHC.Types.[] @ (b, s)
+                       : y ys
+                       -> case y of wild1 { (,) a1 s1 ->
+                          case w1 a1 of wild2 { Rcheck.BrMonad.Br ds1 ->
+                          GHC.Base.++ @ (b, s) (ds1 s1) (go ys) } } }
+                 } in
+                 (# \ (s1 :: s) ->
+                    case w of wild { Rcheck.BrMonad.Br ds -> go (ds s1) } #)) -}
+96a605991104d8254cd6ca63879be779
+  $w$cfmap ::
+    (a -> b) -> Rcheck.BrMonad.Br s a -> (# s -> [(b, s)] #)
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,C(U)><L,U(C(U))>,
+     Inline: [0],
+     Unfolding: (\ @ s
+                   @ a
+                   @ b
+                   (w :: a -> b)
+                   (w1 :: Rcheck.BrMonad.Br s a) ->
+                 Rcheck.BrMonad.$w$c>>=
+                   @ s
+                   @ a
+                   @ b
+                   w1
+                   (\ (x1 :: a) ->
+                    let {
+                      a1 :: b = w x1
+                    } in
+                    Rcheck.BrMonad.Br
+                      @ s
+                      @ b
+                      (\ (s1 :: s) ->
+                       GHC.Types.: @ (b, s) (a1, s1) (GHC.Types.[] @ (b, s))))) -}
+96a605991104d8254cd6ca63879be779
+  data Br s a = Br {runBr :: s -> [(a, s)]}
+8cc8ee9b2e45890363f9e380bfb586b1
+  getBy :: (t -> a) -> Rcheck.BrMonad.Br t a
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,C(U)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ t @ a (f :: t -> a) ->
+                 Rcheck.BrMonad.Br
+                   @ t
+                   @ a
+                   (\ (s :: t) ->
+                    GHC.Types.: @ (a, t) (f s, s) (GHC.Types.[] @ (a, t)))) -}
+9f697253f5f6a5105b0b901d8eee3abc
+  putBy :: (t -> t) -> Rcheck.BrMonad.Br t ()
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,C(U)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ t (f :: t -> t) ->
+                 Rcheck.BrMonad.Br
+                   @ t
+                   @ ()
+                   (\ (s :: t) ->
+                    GHC.Types.:
+                      @ ((), t)
+                      (GHC.Tuple.(), f s)
+                      (GHC.Types.[] @ ((), t)))) -}
+3487accaef8a100bfa458659abd062fa
+  reset :: Rcheck.BrMonad.Br s ()
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (\ @ s ->
+                 Rcheck.BrMonad.Br @ s @ () (Rcheck.BrMonad.reset1 @ s)) -}
+441b9971f9bf29c6e8a540adc1f5592c
+  reset1 :: s -> [((), s)]
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ @ s (s1 :: s) -> GHC.Types.[] @ ((), s)) -}
+96a605991104d8254cd6ca63879be779
+  runBr :: Rcheck.BrMonad.Br s a -> s -> [(a, s)]
+  RecSel Left Rcheck.BrMonad.Br
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ s @ a (ds :: Rcheck.BrMonad.Br s a) ->
+                 case ds of wild { Rcheck.BrMonad.Br ds1 -> ds1 }) -}
+011d91dba996272ebd60937b54bb4fb4
+  union ::
+    Rcheck.BrMonad.Br s a
+    -> Rcheck.BrMonad.Br s a -> Rcheck.BrMonad.Br s a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(C(U))><L,U(C(U))>m,
+     Inline: [0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ s
+                   @ a
+                   (w :: Rcheck.BrMonad.Br s a)
+                   (w1 :: Rcheck.BrMonad.Br s a) ->
+                 Rcheck.BrMonad.Br
+                   @ s
+                   @ a
+                   (\ (s1 :: s) ->
+                    case w of wild { Rcheck.BrMonad.Br ds ->
+                    GHC.Base.++
+                      @ (a, s)
+                      (ds s1)
+                      (case w1 of wild1 { Rcheck.BrMonad.Br ds1 -> ds1 s1 }) })) -}
+instance [safe] GHC.Base.Applicative [Rcheck.BrMonad.Br]
+  = Rcheck.BrMonad.$fApplicativeBr
+instance [safe] GHC.Base.Functor [Rcheck.BrMonad.Br]
+  = Rcheck.BrMonad.$fFunctorBr
+instance [safe] GHC.Base.Monad [Rcheck.BrMonad.Br]
+  = Rcheck.BrMonad.$fMonadBr
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

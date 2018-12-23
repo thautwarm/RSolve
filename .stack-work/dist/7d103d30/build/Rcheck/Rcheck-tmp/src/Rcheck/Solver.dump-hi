@@ -1,0 +1,963 @@
+
+==================== FINAL INTERFACE ====================
+2018-12-23 19:28:16.1964463 UTC
+
+interface main:Rcheck.Solver 8044
+  interface hash: e5bd7d090310e210e8a6da774abef436
+  ABI hash: 9a33f437f6e2bd1987a853b0bb3e8e89
+  export-list hash: 107901bb74093ade186dca8b27ec155f
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: a8c8ef2a137d8f995cc516a8d87c3a65
+  opt_hash: 14e536840aca4e889cad654e6f9b79c1
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Rcheck.Solver.alloc
+  Rcheck.Solver.allocator'
+  Rcheck.Solver.constrains'
+  Rcheck.Solver.load
+  Rcheck.Solver.negPairs'
+  Rcheck.Solver.negUnify
+  Rcheck.Solver.renew
+  Rcheck.Solver.store
+  Rcheck.Solver.update
+  Rcheck.Solver.Addr
+  Rcheck.Solver.Allocator{Rcheck.Solver.Allocator addr storage}
+  Rcheck.Solver.Complement{Rcheck.Solver.complement}
+  Rcheck.Solver.EnumSet{Rcheck.Solver.toEnumerable}
+  Rcheck.Solver.LState{Rcheck.Solver.LState allocator constrains negPairs}
+  Rcheck.Solver.Reference{Rcheck.Solver.isRef Rcheck.Solver.mkRef}
+  Rcheck.Solver.Unify{Rcheck.Solver.prune Rcheck.Solver.unify}
+module dependencies: Rcheck.BrMonad
+package dependencies: array-0.5.2.0 base-4.11.1.0*
+                      containers-0.5.11.0 deepseq-1.4.3.0 ghc-prim-0.5.2.0
+                      integer-gmp-1.0.2.0
+orphans: base-4.11.1.0:GHC.Float base-4.11.1.0:GHC.Base
+family instance modules: base-4.11.1.0:Control.Applicative
+                         base-4.11.1.0:Data.Complex base-4.11.1.0:Data.Functor.Compose
+                         base-4.11.1.0:Data.Functor.Const
+                         base-4.11.1.0:Data.Functor.Identity
+                         base-4.11.1.0:Data.Functor.Product base-4.11.1.0:Data.Functor.Sum
+                         base-4.11.1.0:Data.Monoid base-4.11.1.0:Data.Semigroup
+                         base-4.11.1.0:Data.Semigroup.Internal base-4.11.1.0:Data.Version
+                         base-4.11.1.0:Data.Void base-4.11.1.0:GHC.Exts
+                         base-4.11.1.0:GHC.Generics base-4.11.1.0:GHC.IO.Exception
+                         containers-0.5.11.0:Data.Map.Internal
+                         containers-0.5.11.0:Data.Set.Internal
+import  -/  base-4.11.1.0:Data.List cb78ca5eace70fd310936fda86b3e611
+import  -/  base-4.11.1.0:GHC.Base b7dd14d8fe8d606dde5678ea6b0575e9
+import  -/  base-4.11.1.0:GHC.Err 97cd376c529926d7dcbd3f06020fe0fc
+import  -/  base-4.11.1.0:GHC.Num 5de8df0185e7e8d8ec29b3c61e2c8606
+import  -/  base-4.11.1.0:GHC.Show 6211aec7cccd267a5ee999e4414d7b90
+import  -/  base-4.11.1.0:Prelude aca391812f777207b15d62bb5b9feb63
+import  -/  containers-0.5.11.0:Data.Map 1fa9f25d51fe9f60b440e141f6d7bf14
+import  -/  containers-0.5.11.0:Data.Map.Internal a2314ee57e16ff1fe3af08500b455e81
+import  -/  containers-0.5.11.0:Data.Set eb0fbc743d474b13246bc4dbf4a83977
+import  -/  ghc-prim-0.5.2.0:GHC.Classes f7d67fd97d5a20e9252c9597d1aa387b
+import  -/  Rcheck.BrMonad 8e90abdc1a4a799c3a6fcf1c55375145
+  exports: 8cc780bb56fddbf32ab5dabaae26a071
+  Br 96a605991104d8254cd6ca63879be779
+  getBy 8cc8ee9b2e45890363f9e380bfb586b1
+  putBy 9f697253f5f6a5105b0b901d8eee3abc
+c95b5130bf81f25b674b80d45578e04b
+  $fShowAllocator ::
+    GHC.Show.Show a => GHC.Show.Show (Rcheck.Solver.Allocator a)
+  DFunId
+  {- Arity: 1, Strictness: <L,U(C(C1(C1(U))),A,A)>m, Inline: CONLIKE,
+     Unfolding: DFun: @ a (v :: GHC.Show.Show a).
+                  @ (Rcheck.Solver.Allocator a)
+                  (Rcheck.Solver.$fShowAllocator_$cshowsPrec @ a v)
+                  (Rcheck.Solver.$fShowAllocator_$cshow @ a v)
+                  (Rcheck.Solver.$fShowAllocator_$cshowList @ a v) -}
+9f21cd9b9114e078af625062511796fa
+  $fShowAllocator1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
+45d60c4abf56a3da01aa3fb332ece718
+  $fShowAllocator2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("}"#) -}
+c8ea1a9a62bd6e9958657b78d26a839b
+  $fShowAllocator3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("addr = "#) -}
+0e55b508f5c37565f7e3df2b2e45fbac
+  $fShowAllocator4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("storage = "#) -}
+567298033d5a18fc74fe32102de09df8
+  $fShowAllocator5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Rcheck.Solver.$fShowAllocator6) -}
+e47376972806652a2637a36e9654b1d3
+  $fShowAllocator6 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Allocator {"#) -}
+1f7ad7f5ac0d51980686e66864a65b5d
+  $fShowAllocator7 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Rcheck.Solver.$fShowAllocator2) -}
+c95b5130bf81f25b674b80d45578e04b
+  $fShowAllocator_$cshow ::
+    GHC.Show.Show a => Rcheck.Solver.Allocator a -> GHC.Base.String
+  {- Arity: 2,
+     Strictness: <L,U(C(C1(C1(U))),A,A)><S,1*U(1*U,1*U(U))>,
+     Inline: [0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ a (w :: GHC.Show.Show a) (w1 :: Rcheck.Solver.Allocator a) ->
+                 case w1 of ww { Rcheck.Solver.Allocator ww1 ww2 ->
+                 Rcheck.Solver.$w$cshow @ a w ww1 ww2 }) -}
+c95b5130bf81f25b674b80d45578e04b
+  $fShowAllocator_$cshowList ::
+    GHC.Show.Show a => [Rcheck.Solver.Allocator a] -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <L,U(C(C1(C1(U))),A,A)><S,1*U><L,U>,
+     Unfolding: InlineRule (3, True, False)
+                (\ @ a
+                   ($dShow :: GHC.Show.Show a)
+                   (ls :: [Rcheck.Solver.Allocator a])
+                   (s :: GHC.Base.String) ->
+                 GHC.Show.showList__
+                   @ (Rcheck.Solver.Allocator a)
+                   (Rcheck.Solver.$fShowAllocator_$cshowsPrec
+                      @ a
+                      $dShow
+                      Rcheck.Solver.$fShowAllocator1)
+                   ls
+                   s) -}
+c95b5130bf81f25b674b80d45578e04b
+  $fShowAllocator_$cshowsPrec ::
+    GHC.Show.Show a =>
+    GHC.Types.Int -> Rcheck.Solver.Allocator a -> GHC.Show.ShowS
+  {- Arity: 3,
+     Strictness: <L,U(C(C1(C1(U))),A,A)><S(S),1*U(U)><S,1*U(1*U,U(U))>,
+     Inline: [0],
+     Unfolding: InlineRule (3, True, False)
+                (\ @ a
+                   (w :: GHC.Show.Show a)
+                   (w1 :: GHC.Types.Int)
+                   (w2 :: Rcheck.Solver.Allocator a) ->
+                 case w1 of ww { GHC.Types.I# ww1 ->
+                 case w2 of ww2 { Rcheck.Solver.Allocator ww3 ww4 ->
+                 Rcheck.Solver.$w$cshowsPrec @ a w ww1 ww3 ww4 } }) -}
+83c0bc9a1a2ed3abcdd78a2623fdf735
+  $sinsert_$sgo13 ::
+    GHC.Types.Int
+    -> GHC.Types.Int
+    -> a1
+    -> Data.Map.Internal.Map GHC.Types.Int a1
+    -> Data.Map.Internal.Map GHC.Types.Int a1
+  {- Arity: 4, Strictness: <L,U><S(S),1*U(U)><L,U><S,1*U>,
+     Inline: [0],
+     Unfolding: InlineRule (4, True, False)
+                (\ @ a1
+                   (w :: GHC.Types.Int)
+                   (w1 :: GHC.Types.Int)
+                   (w2 :: a1)
+                   (w3 :: Data.Map.Internal.Map GHC.Types.Int a1) ->
+                 case w1 of ww { GHC.Types.I# ww1 ->
+                 Rcheck.Solver.$w$sgo13 @ a1 w ww1 w2 w3 }) -}
+68b65f0e71c4f72700b65a4af7207580
+  $tc'Allocator :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   9232917871010212840##
+                   8475562435735414492##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tc'Allocator2
+                   1#
+                   Rcheck.Solver.$tc'Allocator1) -}
+51ecc4ae5b0ec59381bc7794ee0e2a0f
+  $tc'Allocator1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+86bc2ae7d9a6fc891bdbe20be47d4dba
+  $tc'Allocator2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tc'Allocator3) -}
+a31d6f1541e3b263661576e6264491de
+  $tc'Allocator3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'Allocator"#) -}
+5f3f561805237c3841075858b3c8be2d
+  $tc'C:Complement :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   7817253630649343629##
+                   16230454631188846998##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tc'C:Complement2
+                   1#
+                   Rcheck.Solver.$tc'C:Complement1) -}
+c7a03968816411e56fd87fbd50ad7e00
+  $tc'C:Complement1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+7cf63e004e1f8a21e788b27ce932eaf5
+  $tc'C:Complement2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tc'C:Complement3) -}
+57091e1f70b5f80ad3627599b8dd713b
+  $tc'C:Complement3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'C:Complement"#) -}
+e65497894819f3c38aab94d394c8bf0b
+  $tc'C:EnumSet :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   3161797564020245643##
+                   1324272944615289457##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tc'C:EnumSet2
+                   1#
+                   Rcheck.Solver.$tc'C:EnumSet1) -}
+5f2f1fd7e16212cc64344a24a75e9abc
+  $tc'C:EnumSet1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+edb750e907ae3ae6533b24f8d0f93dad
+  $tc'C:EnumSet2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tc'C:EnumSet3) -}
+2cb4edeb390aa8caf3eb65bb1578d0b2
+  $tc'C:EnumSet3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'C:EnumSet"#) -}
+4588712ad97c51e7b92413e43a8cd1ca
+  $tc'C:Reference :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   6520938593514070197##
+                   2137127135296095369##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tc'C:Reference2
+                   1#
+                   Rcheck.Solver.$tc'C:Reference1) -}
+cb8f24f758e7bcd469e05d5f92542c9e
+  $tc'C:Reference1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+f49b548eefd444802dd8b42eaa5be15e
+  $tc'C:Reference2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tc'C:Reference3) -}
+c9302a288708c636d4f5546b3ed95619
+  $tc'C:Reference3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'C:Reference"#) -}
+91eff4dd17f797bf7c5c6a9599ab438b
+  $tc'C:Unify :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   8529517001268729254##
+                   9981911548667234643##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tc'C:Unify2
+                   1#
+                   Rcheck.Solver.$tc'C:Unify1) -}
+bb7547fdb6e1c9711f16b38a2be8ad70
+  $tc'C:Unify1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+b20904a6c233511963d23a8e5f63df53
+  $tc'C:Unify2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tc'C:Unify3) -}
+f0f0ad00223c7250a8ebdd44f7ee12b6
+  $tc'C:Unify3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'C:Unify"#) -}
+6efdae4bd64b7296ce5193820af06f19
+  $tc'LState :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   14760807433986595406##
+                   5544269356792395590##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tc'LState2
+                   1#
+                   Rcheck.Solver.$tc'LState1) -}
+63542009a238f7d1e692283aa427d634
+  $tc'LState1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+cc60c895fe83e4a1774e297f7d8f4a0d
+  $tc'LState2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tc'LState3) -}
+38cf56e2f50cdc147018c81e26265c36
+  $tc'LState3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'LState"#) -}
+0cd41abd9323cf9b8c50e5702f8bd76c
+  $tcAllocator :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   15880922539321695655##
+                   3981509558576908454##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tcAllocator1
+                   0#
+                   GHC.Types.krep$*Arr*) -}
+8fc5eebbd6642ac35757d38268baa105
+  $tcAllocator1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tcAllocator2) -}
+21c64339e0579a9acd5ed682fe9dd31d
+  $tcAllocator2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Allocator"#) -}
+c4f80ce8c567ce7fb2357648314ce4f0
+  $tcComplement :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   14854752887744776306##
+                   7141931359994354753##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tcComplement2
+                   0#
+                   Rcheck.Solver.$tcComplement1) -}
+adcb760a5caa32a0a956f3c784783c27
+  $tcComplement1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+3a7b19c5e0d59de978d2d4644534f87e
+  $tcComplement2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tcComplement3) -}
+17bf139e007a06d08365972a2b2e5360
+  $tcComplement3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Complement"#) -}
+e2093f0e15e13aa77a9f9ade21a3b13d
+  $tcEnumSet :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   5070134138450483110##
+                   9858175463797156414##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tcEnumSet1
+                   0#
+                   Rcheck.Solver.$tcComplement1) -}
+62b2085bfb46aaee8814e4eac25a3fdb
+  $tcEnumSet1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tcEnumSet2) -}
+72ba346438b531b133f4fb7ee56b9ccf
+  $tcEnumSet2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("EnumSet"#) -}
+90d0f57e73d0973dd291d32a3948f00c
+  $tcLState :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   6600051200565091326##
+                   3731259565075022967##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tcLState1
+                   0#
+                   GHC.Types.krep$*Arr*) -}
+72a37d3cef8f58b595e037a7178f2aa3
+  $tcLState1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tcLState2) -}
+2343c32b8e97e79c8624b0c1410975bd
+  $tcLState2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("LState"#) -}
+9becba329ba495e495cbbfa0ce9824e9
+  $tcReference :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   11087748894876184802##
+                   14685216107500761405##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tcReference1
+                   0#
+                   Rcheck.Solver.$tcComplement1) -}
+801b31ff4377dd77e0a504f2b2e02574
+  $tcReference1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tcReference2) -}
+85f44eec9fa033d66d065e761af8d8e6
+  $tcReference2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Reference"#) -}
+c02d046ade57c5d806e2426404b6d3e1
+  $tcUnify :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   11545270485825923935##
+                   13619291851034135954##
+                   Rcheck.Solver.$trModule
+                   Rcheck.Solver.$tcUnify1
+                   0#
+                   Rcheck.Solver.$tcComplement1) -}
+5ce41a503fe26253510123fcf05fcb36
+  $tcUnify1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$tcUnify2) -}
+e7c3903948051f74a53ec2c6cbd0de75
+  $tcUnify2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Unify"#) -}
+9d77d35e40db320e75b09802c4c3e932
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Rcheck.Solver.$trModule3
+                   Rcheck.Solver.$trModule1) -}
+2ed206875273eb75275f9089b61f550a
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$trModule2) -}
+e9b4ff92a0418ccaeedac949b2e10210
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Rcheck.Solver"#) -}
+3f8b610cc4f14b45ab199a4ae2b71535
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Rcheck.Solver.$trModule4) -}
+0527e69379b6890df9a63e7da3daadda
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("main"#) -}
+0aa36e688bd452e92b0e744d426ac21b
+  $w$cshow ::
+    GHC.Show.Show a =>
+    Data.Map.Internal.Map GHC.Types.Int a
+    -> GHC.Types.Int -> GHC.Base.String
+  {- Arity: 3, Strictness: <L,U(C(C1(C1(U))),A,A)><L,1*U><L,1*U(U)>,
+     Inline: [0],
+     Unfolding: (\ @ a
+                   (w :: GHC.Show.Show a)
+                   (ww :: Data.Map.Internal.Map GHC.Types.Int a)
+                   (ww1 :: GHC.Types.Int) ->
+                 GHC.Base.++
+                   @ GHC.Types.Char
+                   Rcheck.Solver.$fShowAllocator5
+                   (GHC.CString.unpackAppendCString#
+                      Rcheck.Solver.$fShowAllocator4
+                      (Data.Map.Internal.$w$cshowsPrec
+                         @ GHC.Types.Int
+                         @ a
+                         GHC.Show.$fShowInt
+                         w
+                         0#
+                         ww
+                         (GHC.Base.++
+                            @ GHC.Types.Char
+                            GHC.Show.showCommaSpace1
+                            (GHC.CString.unpackAppendCString#
+                               Rcheck.Solver.$fShowAllocator3
+                               (case ww1 of ww2 { GHC.Types.I# ww3 ->
+                                case GHC.Show.$wshowSignedInt
+                                       0#
+                                       ww3
+                                       Rcheck.Solver.$fShowAllocator7 of ww4 { (#,#) ww5 ww6 ->
+                                GHC.Types.: @ GHC.Types.Char ww5 ww6 } })))))) -}
+4ef8a9e63e22f5e2b4b82abf712a2bf0
+  $w$cshowsPrec ::
+    GHC.Show.Show a =>
+    GHC.Prim.Int#
+    -> Data.Map.Internal.Map GHC.Types.Int a
+    -> GHC.Types.Int
+    -> GHC.Show.ShowS
+  {- Arity: 4,
+     Strictness: <L,U(C(C1(C1(U))),A,A)><S,U><L,1*U><L,U(U)>,
+     Inline: [0],
+     Unfolding: (\ @ a
+                   (w :: GHC.Show.Show a)
+                   (ww :: GHC.Prim.Int#)
+                   (ww1 :: Data.Map.Internal.Map GHC.Types.Int a)
+                   (ww2 :: GHC.Types.Int) ->
+                 let {
+                   f :: GHC.Base.String -> GHC.Base.String
+                   = Data.Map.Internal.$w$cshowsPrec
+                       @ GHC.Types.Int
+                       @ a
+                       GHC.Show.$fShowInt
+                       w
+                       0#
+                       ww1
+                 } in
+                 case GHC.Prim.>=# ww 11# of lwild {
+                   DEFAULT
+                   -> \ (x :: GHC.Base.String) ->
+                      GHC.Base.++
+                        @ GHC.Types.Char
+                        Rcheck.Solver.$fShowAllocator5
+                        (GHC.CString.unpackAppendCString#
+                           Rcheck.Solver.$fShowAllocator4
+                           (f (GHC.Base.++
+                                 @ GHC.Types.Char
+                                 GHC.Show.showCommaSpace1
+                                 (GHC.CString.unpackAppendCString#
+                                    Rcheck.Solver.$fShowAllocator3
+                                    (case ww2 of ww3 { GHC.Types.I# ww4 ->
+                                     case GHC.Show.$wshowSignedInt
+                                            0#
+                                            ww4
+                                            (GHC.CString.unpackAppendCString#
+                                               Rcheck.Solver.$fShowAllocator2
+                                               x) of ww5 { (#,#) ww6 ww7 ->
+                                     GHC.Types.: @ GHC.Types.Char ww6 ww7 } })))))
+                   1#
+                   -> \ (x :: GHC.Base.String) ->
+                      GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.$fShow(,)4
+                        (GHC.Base.++
+                           @ GHC.Types.Char
+                           Rcheck.Solver.$fShowAllocator5
+                           (GHC.CString.unpackAppendCString#
+                              Rcheck.Solver.$fShowAllocator4
+                              (f (GHC.Base.++
+                                    @ GHC.Types.Char
+                                    GHC.Show.showCommaSpace1
+                                    (GHC.CString.unpackAppendCString#
+                                       Rcheck.Solver.$fShowAllocator3
+                                       (case ww2 of ww3 { GHC.Types.I# ww4 ->
+                                        case GHC.Show.$wshowSignedInt
+                                               0#
+                                               ww4
+                                               (GHC.CString.unpackAppendCString#
+                                                  Rcheck.Solver.$fShowAllocator2
+                                                  (GHC.Types.:
+                                                     @ GHC.Types.Char
+                                                     GHC.Show.$fShow(,)2
+                                                     x)) of ww5 { (#,#) ww6 ww7 ->
+                                        GHC.Types.: @ GHC.Types.Char ww6 ww7 } })))))) }) -}
+b017641faea4b85d563f91b60c804500
+  $w$sgo13 ::
+    GHC.Types.Int
+    -> GHC.Prim.Int#
+    -> a1
+    -> Data.Map.Internal.Map GHC.Types.Int a1
+    -> Data.Map.Internal.Map GHC.Types.Int a1
+  {- Arity: 4, Strictness: <L,U><L,U><L,U><S,1*U>, Inline: [0] -}
+0e7a7e1e803ea16470574e9d22cbfa92
+  $wload ::
+    GHC.Types.Int
+    -> (# Rcheck.Solver.LState a -> [(a, Rcheck.Solver.LState a)] #)
+  {- Arity: 1, Strictness: <L,U(U)>, Inline: [0],
+     Unfolding: (\ @ a (w :: GHC.Types.Int) ->
+                 letrec {
+                   go :: [(Rcheck.Solver.Allocator a, Rcheck.Solver.LState a)]
+                         -> [(a, Rcheck.Solver.LState a)]
+                     {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ (ds :: [(Rcheck.Solver.Allocator a,
+                                Rcheck.Solver.LState a)]) ->
+                     case ds of wild {
+                       [] -> GHC.Types.[] @ (a, Rcheck.Solver.LState a)
+                       : y ys
+                       -> case y of wild1 { (,) a1 s1 ->
+                          GHC.Base.++_$s++
+                            @ (a, Rcheck.Solver.LState a)
+                            (go ys)
+                            (case w of ww { GHC.Types.I# ww1 ->
+                             case a1 of wild2 { Rcheck.Solver.Allocator ds1 ds2 ->
+                             Rcheck.Solver.$wpoly_go13 @ a ww1 ds1 } },
+                             s1)
+                            (GHC.Types.[] @ (a, Rcheck.Solver.LState a)) } }
+                 } in
+                 (# \ (s1 :: Rcheck.Solver.LState a) ->
+                    go
+                      (GHC.Types.:
+                         @ (Rcheck.Solver.Allocator a, Rcheck.Solver.LState a)
+                         (case s1 of wild { Rcheck.Solver.LState ds ds1 ds2 -> ds }, s1)
+                         (GHC.Types.[]
+                            @ (Rcheck.Solver.Allocator a, Rcheck.Solver.LState a))) #)) -}
+cf678a179420fe2e0214d22c631951c6
+  $wnegUnify ::
+    GHC.Types.Int
+    -> GHC.Types.Int
+    -> (# Rcheck.Solver.LState a -> [((), Rcheck.Solver.LState a)] #)
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(U)><L,U(U)>,
+     Inline: [0],
+     Unfolding: (\ @ a (w :: GHC.Types.Int) (w1 :: GHC.Types.Int) ->
+                 let {
+                   negs :: (GHC.Types.Int, GHC.Types.Int) = (w, w1)
+                 } in
+                 letrec {
+                   check :: [(GHC.Types.Int, GHC.Types.Int)] -> GHC.Types.Bool
+                     {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ (ds :: [(GHC.Types.Int, GHC.Types.Int)]) ->
+                     case ds of wild {
+                       [] -> GHC.Types.True
+                       : ds1 xs
+                       -> case ds1 of wild1 { (,) a' b' ->
+                          case a' of wild2 { GHC.Types.I# x ->
+                          case w of wild3 { GHC.Types.I# y ->
+                          let {
+                            $j :: GHC.Types.Bool <join 0>
+                            = case w1 of wild4 { GHC.Types.I# y1 ->
+                              case GHC.Prim.==# x y1 of lwild {
+                                DEFAULT -> check xs
+                                1#
+                                -> case b' of wild5 { GHC.Types.I# x1 ->
+                                   case GHC.Prim.==# x1 y of lwild1 {
+                                     DEFAULT -> check xs 1# -> GHC.Types.False } } } }
+                          } in
+                          case GHC.Prim.==# x y of lwild {
+                            DEFAULT -> $j
+                            1#
+                            -> case b' of wild4 { GHC.Types.I# x1 ->
+                               case w1 of wild5 { GHC.Types.I# y1 ->
+                               case GHC.Prim.==# x1 y1 of lwild1 {
+                                 DEFAULT -> $j 1# -> GHC.Types.False } } } } } } } }
+                 } in
+                 letrec {
+                   go :: [([(GHC.Types.Int, GHC.Types.Int)], Rcheck.Solver.LState a)]
+                         -> [((), Rcheck.Solver.LState a)]
+                     {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ (ds :: [([(GHC.Types.Int, GHC.Types.Int)],
+                                Rcheck.Solver.LState a)]) ->
+                     case ds of wild {
+                       [] -> GHC.Types.[] @ ((), Rcheck.Solver.LState a)
+                       : y ys
+                       -> case y of wild1 { (,) a1 s1 ->
+                          case check a1 of wild2 {
+                            GHC.Types.False
+                            -> GHC.Base.++_$s++
+                                 @ ((), Rcheck.Solver.LState a)
+                                 (go ys)
+                                 (GHC.Tuple.(), s1)
+                                 (GHC.Types.[] @ ((), Rcheck.Solver.LState a))
+                            GHC.Types.True
+                            -> GHC.Base.++_$s++
+                                 @ ((), Rcheck.Solver.LState a)
+                                 (go ys)
+                                 (GHC.Tuple.(),
+                                  case s1 of wild3 { Rcheck.Solver.LState st ds1 cs ->
+                                  Rcheck.Solver.LState
+                                    @ a
+                                    st
+                                    (GHC.Types.: @ (GHC.Types.Int, GHC.Types.Int) negs a1)
+                                    cs })
+                                 (GHC.Types.[] @ ((), Rcheck.Solver.LState a)) } } }
+                 } in
+                 (# \ (s1 :: Rcheck.Solver.LState a) ->
+                    go
+                      (GHC.Types.:
+                         @ ([(GHC.Types.Int, GHC.Types.Int)], Rcheck.Solver.LState a)
+                         (case s1 of wild { Rcheck.Solver.LState ds ds1 ds2 -> ds1 }, s1)
+                         (GHC.Types.[]
+                            @ ([(GHC.Types.Int, GHC.Types.Int)],
+                               Rcheck.Solver.LState a))) #)) -}
+77fec394180376ef4be35030b8e32439
+  $wpoly_go13 ::
+    GHC.Prim.Int# -> Data.Map.Internal.Map GHC.Types.Int a -> a
+  {- Arity: 2, Strictness: <S,U><S,1*U>, Inline: [0] -}
+16cbb91aaa0bf3799a71dc8badb50e9e
+  $wstore ::
+    Rcheck.Solver.Reference a =>
+    a -> (# Rcheck.Solver.LState a -> [(a, Rcheck.Solver.LState a)] #)
+  {- Arity: 2, Strictness: <L,U(1*C1(U),C(U))><L,U>, Inline: [0],
+     Unfolding: (\ @ a (w :: Rcheck.Solver.Reference a) (w1 :: a) ->
+                 let {
+                   lvl25 :: GHC.Base.Maybe Rcheck.Solver.Addr
+                   = Rcheck.Solver.isRef @ a w w1
+                 } in
+                 letrec {
+                   go :: [(Rcheck.Solver.Allocator a, Rcheck.Solver.LState a)]
+                         -> [(a, Rcheck.Solver.LState a)]
+                     {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ (ds :: [(Rcheck.Solver.Allocator a,
+                                Rcheck.Solver.LState a)]) ->
+                     case ds of wild {
+                       [] -> GHC.Types.[] @ (a, Rcheck.Solver.LState a)
+                       : y ys
+                       -> case y of wild1 { (,) a1 s1 ->
+                          let {
+                            ds1 :: (GHC.Types.Int, Rcheck.Solver.Allocator a)
+                            = case a1 of ww { Rcheck.Solver.Allocator ww1 ww2 ->
+                              case lvl25 of wild2 {
+                                GHC.Base.Nothing
+                                -> (ww2,
+                                    Rcheck.Solver.Allocator
+                                      @ a
+                                      (Rcheck.Solver.$sinsert_$sgo13 @ a ww2 ww2 w1 ww1)
+                                      (case ww2 of wild3 { GHC.Types.I# x ->
+                                       GHC.Types.I# (GHC.Prim.+# x 1#) }))
+                                GHC.Base.Just ds2
+                                -> case Rcheck.Solver.alloc1
+                                   ret_ty (GHC.Types.Int, Rcheck.Solver.Allocator a)
+                                   of {} } }
+                          } in
+                          let {
+                            a2 :: a
+                            = Rcheck.Solver.mkRef @ a w (case ds1 of wild2 { (,) n st' -> n })
+                          } in
+                          letrec {
+                            go1 :: [((), Rcheck.Solver.LState a)]
+                                   -> [(a, Rcheck.Solver.LState a)]
+                              {- Arity: 1, Strictness: <S,1*U> -}
+                            = \ (ds2 :: [((), Rcheck.Solver.LState a)]) ->
+                              case ds2 of wild2 {
+                                [] -> GHC.Types.[] @ (a, Rcheck.Solver.LState a)
+                                : y1 ys1
+                                -> case y1 of wild3 { (,) a3 s2 ->
+                                   GHC.Base.++_$s++
+                                     @ (a, Rcheck.Solver.LState a)
+                                     (go1 ys1)
+                                     (a2, s2)
+                                     (GHC.Types.[] @ (a, Rcheck.Solver.LState a)) } }
+                          } in
+                          GHC.Base.++
+                            @ (a, Rcheck.Solver.LState a)
+                            (go1
+                               (GHC.Types.:
+                                  @ ((), Rcheck.Solver.LState a)
+                                  (GHC.Tuple.(),
+                                   case s1 of wild2 { Rcheck.Solver.LState ds2 negs cs ->
+                                   Rcheck.Solver.LState
+                                     @ a
+                                     (case ds1 of wild3 { (,) n st' -> st' })
+                                     negs
+                                     cs })
+                                  (GHC.Types.[] @ ((), Rcheck.Solver.LState a))))
+                            (go ys) } }
+                 } in
+                 (# \ (s1 :: Rcheck.Solver.LState a) ->
+                    go
+                      (GHC.Types.:
+                         @ (Rcheck.Solver.Allocator a, Rcheck.Solver.LState a)
+                         (case s1 of wild { Rcheck.Solver.LState ds ds1 ds2 -> ds }, s1)
+                         (GHC.Types.[]
+                            @ (Rcheck.Solver.Allocator a, Rcheck.Solver.LState a))) #)) -}
+43ba0e4589a233fc17c02f26b14dddc5
+  $wupdate ::
+    Rcheck.Solver.Reference a =>
+    GHC.Types.Int
+    -> a
+    -> (# Rcheck.Solver.LState a -> [((), Rcheck.Solver.LState a)] #)
+  {- Arity: 3, Strictness: <L,U(C(U),A)><L,U(U)><L,U>, Inline: [0],
+     Unfolding: (\ @ a
+                   (w :: Rcheck.Solver.Reference a)
+                   (w1 :: GHC.Types.Int)
+                   (w2 :: a) ->
+                 letrec {
+                   go :: [(Rcheck.Solver.Allocator a, Rcheck.Solver.LState a)]
+                         -> [((), Rcheck.Solver.LState a)]
+                     {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ (ds :: [(Rcheck.Solver.Allocator a,
+                                Rcheck.Solver.LState a)]) ->
+                     case ds of wild {
+                       [] -> GHC.Types.[] @ ((), Rcheck.Solver.LState a)
+                       : y ys
+                       -> case y of wild1 { (,) a1 s1 ->
+                          GHC.Base.++_$s++
+                            @ ((), Rcheck.Solver.LState a)
+                            (go ys)
+                            (GHC.Tuple.(),
+                             case s1 of wild2 { Rcheck.Solver.LState ds1 negs cs ->
+                             Rcheck.Solver.LState
+                               @ a
+                               (Rcheck.Solver.renew @ a w w1 w2 a1)
+                               negs
+                               cs })
+                            (GHC.Types.[] @ ((), Rcheck.Solver.LState a)) } }
+                 } in
+                 (# \ (s1 :: Rcheck.Solver.LState a) ->
+                    go
+                      (GHC.Types.:
+                         @ (Rcheck.Solver.Allocator a, Rcheck.Solver.LState a)
+                         (case s1 of wild { Rcheck.Solver.LState ds ds1 ds2 -> ds }, s1)
+                         (GHC.Types.[]
+                            @ (Rcheck.Solver.Allocator a, Rcheck.Solver.LState a))) #)) -}
+6037d7f70899c50eb75c112cfabb98d0
+  type Addr = GHC.Types.Int
+c95b5130bf81f25b674b80d45578e04b
+  data Allocator a
+    = Allocator {storage :: Data.Map.Internal.Map GHC.Types.Int a,
+                 addr :: GHC.Types.Int}
+13e9fbc8f02c972f9cce387c51539b85
+  class Rcheck.Solver.Unify a => Complement a where
+    complement :: Rcheck.Solver.Addr
+                  -> Rcheck.Solver.Addr
+                  -> Rcheck.BrMonad.Br (Rcheck.Solver.LState a) ()
+    {-# MINIMAL complement #-}
+8e657ed5042ab16c7bdb42ecf64e430e
+  class EnumSet a where
+    toEnumerable :: Rcheck.BrMonad.Br (Rcheck.Solver.LState a) ()
+    {-# MINIMAL toEnumerable #-}
+23e909c1edeeb7c95c204c45b9155ab5
+  data LState a
+    = LState {allocator :: Rcheck.Solver.Allocator a,
+              negPairs :: [(GHC.Types.Int, GHC.Types.Int)],
+              constrains :: [Rcheck.BrMonad.Br
+                               (Rcheck.Solver.LState a) GHC.Types.Bool]}
+f6e9771570b003b0676679c95675aa63
+  class Reference a where
+    isRef :: a -> GHC.Base.Maybe Rcheck.Solver.Addr
+    mkRef :: Rcheck.Solver.Addr -> a
+    {-# MINIMAL isRef, mkRef #-}
+cfbea0a234bb5ac855cd1c2fd4c33c0f
+  class (GHC.Classes.Eq a, Rcheck.Solver.Reference a) =>
+        Unify a where
+    prune :: a
+             -> Rcheck.BrMonad.Br (Rcheck.Solver.LState a) Rcheck.Solver.Addr
+    unify :: a -> a -> Rcheck.BrMonad.Br (Rcheck.Solver.LState a) ()
+    {-# MINIMAL prune, unify #-}
+c95b5130bf81f25b674b80d45578e04b
+  addr :: Rcheck.Solver.Allocator a -> GHC.Types.Int
+  RecSel Left Rcheck.Solver.Allocator
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(A,1*U(U))>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (ds :: Rcheck.Solver.Allocator a) ->
+                 case ds of wild { Rcheck.Solver.Allocator ds1 ds2 -> ds2 }) -}
+c9bb586cd9bcbaeb77db1208934099cd
+  alloc ::
+    Rcheck.Solver.Reference a =>
+    a
+    -> Rcheck.Solver.Allocator a
+    -> (GHC.Types.Int, Rcheck.Solver.Allocator a)
+  {- Arity: 3,
+     Strictness: <S(C(S)L),1*U(1*C1(U),A)><L,U><S,1*U(1*U,U(U))>m,
+     Inline: [0],
+     Unfolding: InlineRule (3, True, False)
+                (\ @ a
+                   (w :: Rcheck.Solver.Reference a)
+                   (w1 :: a)
+                   (w2 :: Rcheck.Solver.Allocator a) ->
+                 case w2 of ww { Rcheck.Solver.Allocator ww1 ww2 ->
+                 case Rcheck.Solver.isRef @ a w w1 of wild {
+                   GHC.Base.Nothing
+                   -> (ww2,
+                       Rcheck.Solver.Allocator
+                         @ a
+                         (Rcheck.Solver.$sinsert_$sgo13 @ a ww2 ww2 w1 ww1)
+                         (case ww2 of wild1 { GHC.Types.I# x ->
+                          GHC.Types.I# (GHC.Prim.+# x 1#) }))
+                   GHC.Base.Just ds
+                   -> case Rcheck.Solver.alloc1
+                      ret_ty (GHC.Types.Int, Rcheck.Solver.Allocator a)
+                      of {} } }) -}
+48ddc96a5319ad15d566709b091e2770
+  alloc1 :: (GHC.Types.Int, Rcheck.Solver.Allocator a)
+  {- Strictness: x -}
+23e909c1edeeb7c95c204c45b9155ab5
+  allocator :: Rcheck.Solver.LState a -> Rcheck.Solver.Allocator a
+  RecSel Left Rcheck.Solver.LState
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U(U,U),A,A)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (ds :: Rcheck.Solver.LState a) ->
+                 case ds of wild { Rcheck.Solver.LState ds1 ds2 ds3 -> ds1 }) -}
+2e9c273e54e58028ca6b13e9467789f3
+  allocator' ::
+    Rcheck.Solver.Allocator a
+    -> Rcheck.Solver.LState a -> Rcheck.Solver.LState a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U(A,U,U)>m,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ a
+                   (st :: Rcheck.Solver.Allocator a)
+                   (ds :: Rcheck.Solver.LState a) ->
+                 case ds of wild { Rcheck.Solver.LState ds1 negs cs ->
+                 Rcheck.Solver.LState @ a st negs cs }) -}
+23e909c1edeeb7c95c204c45b9155ab5
+  constrains ::
+    Rcheck.Solver.LState a
+    -> [Rcheck.BrMonad.Br (Rcheck.Solver.LState a) GHC.Types.Bool]
+  RecSel Left Rcheck.Solver.LState
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLS),1*U(A,A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (ds :: Rcheck.Solver.LState a) ->
+                 case ds of wild { Rcheck.Solver.LState ds1 ds2 ds3 -> ds3 }) -}
+8f323e06044d103ff486ebb345b665b0
+  constrains' ::
+    [Rcheck.BrMonad.Br (Rcheck.Solver.LState a) GHC.Types.Bool]
+    -> Rcheck.Solver.LState a -> Rcheck.Solver.LState a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U(U,U,A)>m,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ a
+                   (cs :: [Rcheck.BrMonad.Br (Rcheck.Solver.LState a) GHC.Types.Bool])
+                   (ds :: Rcheck.Solver.LState a) ->
+                 case ds of wild { Rcheck.Solver.LState st negs ds1 ->
+                 Rcheck.Solver.LState @ a st negs cs }) -}
+43091774344601ff0908ed65db7e998d
+  load ::
+    GHC.Types.Int -> Rcheck.BrMonad.Br (Rcheck.Solver.LState a) a
+  {- Arity: 1, Strictness: <L,U(U)>m, Inline: [0],
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (w :: GHC.Types.Int) ->
+                 case Rcheck.Solver.$wload @ a w of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ (Rcheck.Solver.LState a) @ a ww1 }) -}
+23e909c1edeeb7c95c204c45b9155ab5
+  negPairs ::
+    Rcheck.Solver.LState a -> [(GHC.Types.Int, GHC.Types.Int)]
+  RecSel Left Rcheck.Solver.LState
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LSL),1*U(A,1*U,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (ds :: Rcheck.Solver.LState a) ->
+                 case ds of wild { Rcheck.Solver.LState ds1 ds2 ds3 -> ds2 }) -}
+9e7617ae56ef310d07fccaa183753605
+  negPairs' ::
+    [(GHC.Types.Int, GHC.Types.Int)]
+    -> Rcheck.Solver.LState a -> Rcheck.Solver.LState a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U(U,A,U)>m,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ a
+                   (negs :: [(GHC.Types.Int, GHC.Types.Int)])
+                   (ds :: Rcheck.Solver.LState a) ->
+                 case ds of wild { Rcheck.Solver.LState st ds1 cs ->
+                 Rcheck.Solver.LState @ a st negs cs }) -}
+d84f5b4ea41748e24910d7328d199ab4
+  negUnify ::
+    GHC.Types.Int
+    -> GHC.Types.Int -> Rcheck.BrMonad.Br (Rcheck.Solver.LState a) ()
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U(U)><L,U(U)>m,
+     Inline: [0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ a (w :: GHC.Types.Int) (w1 :: GHC.Types.Int) ->
+                 case Rcheck.Solver.$wnegUnify @ a w w1 of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ (Rcheck.Solver.LState a) @ () ww1 }) -}
+30d7e944bfb9eeecfea4a67aec3d352c
+  renew ::
+    Rcheck.Solver.Reference a =>
+    GHC.Types.Int
+    -> a -> Rcheck.Solver.Allocator a -> Rcheck.Solver.Allocator a
+  {- Arity: 4,
+     Strictness: <S(C(S)L),1*U(1*C1(U),A)><L,U(U)><L,U><S,1*U(U,U)>m,
+     Inline: [0],
+     Unfolding: InlineRule (4, True, False)
+                (\ @ a
+                   (w :: Rcheck.Solver.Reference a)
+                   (w1 :: GHC.Types.Int)
+                   (w2 :: a)
+                   (w3 :: Rcheck.Solver.Allocator a) ->
+                 case w3 of ww { Rcheck.Solver.Allocator ww1 ww2 ->
+                 case Rcheck.Solver.isRef @ a w w2 of wild {
+                   GHC.Base.Nothing
+                   -> Rcheck.Solver.Allocator
+                        @ a
+                        (Rcheck.Solver.$sinsert_$sgo13 @ a w1 w1 w2 ww1)
+                        ww2
+                   GHC.Base.Just addr'
+                   -> case addr' of wild1 { GHC.Types.I# x ->
+                      case w1 of wild2 { GHC.Types.I# y ->
+                      case GHC.Prim.==# x y of lwild {
+                        DEFAULT
+                        -> Rcheck.Solver.Allocator
+                             @ a
+                             (Rcheck.Solver.$w$sgo13 @ a wild2 y w2 ww1)
+                             ww2
+                        1# -> Rcheck.Solver.Allocator @ a ww1 ww2 } } } } }) -}
+c95b5130bf81f25b674b80d45578e04b
+  storage ::
+    Rcheck.Solver.Allocator a -> Data.Map.Internal.Map GHC.Types.Int a
+  RecSel Left Rcheck.Solver.Allocator
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SL),1*U(1*U,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (ds :: Rcheck.Solver.Allocator a) ->
+                 case ds of wild { Rcheck.Solver.Allocator ds1 ds2 -> ds1 }) -}
+f437cd83bf2e51f217979b836c33b3be
+  store ::
+    (Rcheck.Solver.Reference a, GHC.Classes.Eq a) =>
+    a -> Rcheck.BrMonad.Br (Rcheck.Solver.LState a) a
+  {- Arity: 3, Strictness: <L,U(C(U),C(U))><L,A><L,U>m, Inline: [0],
+     Unfolding: InlineRule (3, True, False)
+                (\ @ a
+                   (w :: Rcheck.Solver.Reference a)
+                   (w1 :: GHC.Classes.Eq a)
+                   (w2 :: a) ->
+                 case Rcheck.Solver.$wstore @ a w w2 of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ (Rcheck.Solver.LState a) @ a ww1 }) -}
+921ebfb3dc578b7d8f260d7d0f4a4d34
+  update ::
+    Rcheck.Solver.Reference a =>
+    GHC.Types.Int -> a -> Rcheck.BrMonad.Br (Rcheck.Solver.LState a) ()
+  {- Arity: 3, Strictness: <L,U(C(U),A)><L,U(U)><L,U>m, Inline: [0],
+     Unfolding: InlineRule (3, True, False)
+                (\ @ a
+                   (w :: Rcheck.Solver.Reference a)
+                   (w1 :: GHC.Types.Int)
+                   (w2 :: a) ->
+                 case Rcheck.Solver.$wupdate @ a w w1 w2 of ww { Unit# ww1 ->
+                 Rcheck.BrMonad.Br @ (Rcheck.Solver.LState a) @ () ww1 }) -}
+instance [safe] GHC.Show.Show [Rcheck.Solver.Allocator]
+  = Rcheck.Solver.$fShowAllocator
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
