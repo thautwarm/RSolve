@@ -5,7 +5,7 @@ import RSolve.Logic
 import Control.Monad
 import Prelude hiding (not, or, and)
 import qualified Data.Set  as S
-import qualified Data.Map  as Ms
+import qualified Data.Map  as M
 import qualified Data.List as L
 
 nub = L.nub
@@ -277,5 +277,21 @@ emptyLState    = LState emptyAllocator [] []
 
 
 main = do
+
    format [show i | i <- [1..10]] . nub . L.map fst
    $ runBr test emptyLState
+
+-- test2 = do
+--   a <- store $ sol [A, B, C]
+--   b <- store $ sol [B, C, D]
+--   c <- store $ sol [C]
+--   _ <- solve $ a `eq`  b
+--   _ <- solve $ b `neq` c
+--   _ <- solveNeg  -- `Not` condition requires this
+--   _ <- solvePred -- unnecessary
+--   mapM require [a, b, c] 
+  
+-- main = do
+--     format ["a", "b", "c"] . nub . L.map fst
+--     $ runBr test2 emptyLState
+  
