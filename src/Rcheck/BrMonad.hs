@@ -1,4 +1,4 @@
-module Rcheck.BrMonad where
+module RSolve.BrMonad where
 import Control.Monad
 
 data Br s a = Br {runBr :: s -> [(a, s)]}

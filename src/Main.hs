@@ -1,7 +1,7 @@
 module Main where
-import Rcheck.BrMonad
-import Rcheck.Solver
-import Rcheck.Logic
+import RSolve.BrMonad
+import RSolve.Solver
+import RSolve.Logic
 import Control.Monad
 import Prelude hiding (not, or, and)
 import qualified Data.Set  as S

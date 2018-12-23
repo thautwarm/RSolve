@@ -1,7 +1,7 @@
 {-# LANGUAGE GADTs  #-}
-module Rcheck.Logic where
-import Rcheck.BrMonad
-import Rcheck.Solver
+module RSolve.Logic where
+import RSolve.BrMonad
+import RSolve.Solver
 import Data.List (nub)
 
 data Cond a where
