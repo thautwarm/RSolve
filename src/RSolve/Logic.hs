@@ -1,4 +1,4 @@
-{-# LANGUAGE GADTs  #-}
+{-# LANGUAGE GADTs #-}
 module RSolve.Logic where
 import RSolve.BrMonad
 import RSolve.Infr
@@ -33,7 +33,7 @@ solve (Pred c)    = do
 
 solve (Not emmm)  =
   case emmm of
-    Pred  c    -> solve $ Pred (c >>= return . not)
+    Pred  c    -> solve $ Pred (not <$> c)
     Not emmm   -> solve emmm
     Or     l r -> solve $ And (Not l)(Not r)
     And    l r -> solve $ Or  (Not l)(Not r)

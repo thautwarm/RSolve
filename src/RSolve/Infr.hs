@@ -60,20 +60,17 @@ store a = do
 
 -- update state
 update  :: Reference a => Addr -> a -> Br (LState a) ()
-update addr obj = do
-  st <- getBy allocator
-  putBy $ (allocator' . renew addr obj $ st)
+update addr obj = getBy allocator >>= putBy . allocator' . renew addr obj
 
 
 load :: Addr -> Br (LState a) a
 load addr =
-  getBy allocator >>= return . (flip (M.!) $ addr) . storage
+  ((flip (M.!) addr) . storage) <$> getBy allocator
 
 
-  
 tryLoad :: Addr -> Br (LState a) (Maybe a)
 tryLoad addr =
-  getBy allocator >>= return . (M.lookup addr) . storage
+  (M.lookup addr . storage) <$> getBy allocator
 
 
 -- for the system which take leverage of generics
@@ -92,11 +89,10 @@ negUnify a b = do
   else return ()
   where
     check [] = True
-    check ((a', b'):xs) =
-      if (a', b') == (a, b) || (a', b') == (b, a)
-      then False
-      else check xs
+    check ((a', b'):xs)
+      | (a', b') == (a, b) || (a', b') == (b, a) = False
+      | otherwise = check xs
 
 
-emptyAllocator = Allocator (M.empty) 0
+emptyAllocator = Allocator M.empty 0
 emptyLState    = LState emptyAllocator [] []

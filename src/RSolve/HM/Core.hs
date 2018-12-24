@@ -1,5 +1,7 @@
 {-# LANGUAGE GADTs  #-}
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE TupleSections #-}
 -- https://github.com/thautwarm/reFining/blob/master/DotNet/reFining/reFining
 
 module RSolve.HM.Core where
@@ -40,7 +42,7 @@ instance Show Core where
     show (Var a) = "a" ++ show a
 
 free :: M.Map Id Core -> Core -> Core
-free m b = mkFree b
+free m = mkFree
     where
         mkFree a@(Prim _) = a
         mkFree (Op op a b) = Op op (mkFree a) (mkFree b)
@@ -69,28 +71,21 @@ occur_in l r =
         contains (Forall _ a) = contains a
 
 instance Reference Core where
-    mkRef a = Var a
+    mkRef = Var
     isRef (Var a) = Just a
     isRef  _      = Nothing
         
 
 instance Unify Core where
-    prune v@(Var a) = do
-        mvar <- tryLoad a
-        case mvar of
-            Just var -> prune var
-            _        -> return v
+    prune v@(Var a) = tryLoad a >>= \case
+        Just var -> prune var
+        _        -> return v
     
     prune a@(Prim _) = return a
 
-    prune (Forall a b) = do
-        b <- prune b
-        return $ Forall a b
-    prune (Op op a b) = do
-        a <- prune a
-        b <- prune b
-        return $ Op op a b
-    
+    prune (Forall a b) = Forall a <$> prune b
+    prune (Op op a b) = Op op <$> prune a <*> prune b
+
     unify (Prim a) (Prim b) =
             if a == b then return ()
             else reset
@@ -105,8 +100,7 @@ instance Unify Core where
        
     unify l r@(Var _) = unify r l
     
-    unify (Var id)  r = do
-         update id r
+    unify (Var id)  r = update id r
 
     -- type operators are not frist class 
     unify (Op opl l1 l2) (Op opr r1 r2) = 
@@ -120,15 +114,8 @@ instance Unify Core where
         let l = free freemap poly 
         unify l r
         where
-            freepair freevar = do
-                var <- new
-                return (freevar, mkRef var)
+            freepair freevar = (freevar,) <$> mkRef <$> new
 
     unify l r@(Forall _ _) = unify r l
-
-
-    
-
-    
 
 

@@ -1,7 +1,7 @@
 module RSolve.BrMonad where
 import Control.Monad
 
-data Br s a = Br {runBr :: s -> [(a, s)]}
+newtype Br s a = Br {runBr :: s -> [(a, s)]}
 
 instance Functor (Br s) where
   fmap = liftM
@@ -26,4 +26,4 @@ union ma mb =
   runBr ma s ++ runBr mb s
 
 reset :: Br s ()
-reset = Br $ \s -> []
+reset = Br $ const []
