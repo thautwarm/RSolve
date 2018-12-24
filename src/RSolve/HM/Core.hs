@@ -8,6 +8,7 @@ module RSolve.HM.Core where
 import RSolve.BrMonad
 import RSolve.Infr
 import RSolve.Logic
+import Control.Applicative
 import qualified Data.Map as M
 
 type Id = Int
@@ -88,7 +89,7 @@ instance Unify Core where
 
     unify (Prim a) (Prim b) =
             if a == b then return ()
-            else reset
+            else empty
     
     unify l@(Var a) r@(Var b) 
         | a == b       = return ()
@@ -104,7 +105,7 @@ instance Unify Core where
 
     -- type operators are not frist class 
     unify (Op opl l1 l2) (Op opr r1 r2) = 
-        if opl /= opr then reset
+        if opl /= opr then empty
         else
             unify l1 r1 >> unify l2 r2
 

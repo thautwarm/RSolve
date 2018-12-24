@@ -3,6 +3,7 @@ import RSolve.BrMonad
 import RSolve.Infr
 import RSolve.Logic
 import Control.Monad
+import Control.Applicative
 import Prelude hiding (not, or, and)
 import qualified Data.Set  as S
 import qualified Data.Map  as M
@@ -44,13 +45,13 @@ instance Unify Term where
     pruneSol r >>= \(rFrom, rxsm) ->
     case (lxsm, rxsm) of
        (Nothing,   _)   -> update lFrom (Var rFrom)
-       (Just lxs,  _) | S.null lxs -> reset
-       (_, Just rxs)  | S.null rxs -> reset
+       (Just lxs,  _) | S.null lxs -> empty
+       (_, Just rxs)  | S.null rxs -> empty
        (Just _,    Nothing )   -> unify r l
        (Just lxs,  Just rxs)   ->
         let xs = S.intersection lxs rxs in
         if S.null xs
-        then reset
+        then empty
         else do
         new <- store $ Sol xs
         update lFrom new >> update rFrom new
@@ -60,7 +61,7 @@ instance Complement Term where
     (l, Just lxs) <- pruneSol l
     (r, Just rxs) <- pruneSol r
     case (S.size lxs, S.size rxs) of
-      (1, 1)   | lxs == rxs -> reset
+      (1, 1)   | lxs == rxs -> empty
       (1, 1)   | lxs /= rxs -> return ()
       (nl, nr) | nl < nr    -> complement (Var r) (Var l)
       (nl, nr) | nl >= nr   -> do
@@ -71,12 +72,12 @@ instance Complement Term where
             let lnew_set = S.delete re lxs
             in
             if S.null lnew_set
-            then reset
+            then empty
             else do
               lnew <- store . Sol $ lnew_set
               rnew <- store . Sol . S.singleton $ re
               update l lnew >> update r rnew
-         L.foldl union x xs
+         L.foldl (<|>) x xs
 
 instance EnumSet Term where
   toEnumerable = do
@@ -97,6 +98,6 @@ instance EnumSet Term where
                 let s = update k x
                 case xs of
                   [] -> s
-                  _  -> s `union` g xs
+                  _  -> s <|> g xs
             in a >> g lst
 

@@ -3,6 +3,7 @@ module RSolve.Logic where
 import RSolve.BrMonad
 import RSolve.Infr
 import Data.List (nub)
+import Control.Applicative
 
 data Cond a where
    Unify :: Unify a => a -> a -> Cond a
@@ -19,13 +20,13 @@ solve (Unify l r) = do
   r <- prune r
   unify l r
 
-solve (Or l r)    = solve l `union` solve r
+solve (Or l r)    = solve l <|> solve r
 
 solve (And l r)   =
   solve l >> solve r
 
 solve (Imply l r) =
-  (solve l >> solve r) `union` solve (Not l)
+  (solve l >> solve r) <|> solve (Not l)
 
 solve (Pred c)    = do
   cs <- getBy constrains
@@ -75,7 +76,7 @@ solvePred = do
     checkPredicate (x:xs) = do
       x <- x
       if x then checkPredicate xs
-      else reset
+      else empty
 
 require :: Unify a => a -> Br (LState a) a
 require a = do

@@ -1,5 +1,6 @@
 module RSolve.BrMonad where
 import Control.Monad
+import Control.Applicative
 
 newtype Br s a = Br {runBr :: s -> [(a, s)]}
 
@@ -17,13 +18,9 @@ instance Monad (Br s) where
        in concat[ runBr (k a) s | (a, s) <- xs]
   return a = Br $ \s -> [(a, s)]
 
+instance Alternative (Br s) where
+  empty = Br $ const []
+  ma <|> mb = Br $ \s -> runBr ma s ++ runBr mb s
+
 getBy f = Br $ \s -> [(f s, s)]
 putBy f = Br $ \s -> [((), f s)]
-
-union :: Br s a -> Br s a -> Br s a
-union ma mb =
-  Br $ \s ->
-  runBr ma s ++ runBr mb s
-
-reset :: Br s ()
-reset = Br $ const []
