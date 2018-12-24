@@ -20,5 +20,9 @@ executable RSolve
   build-depends:       base >= 4.7 && < 5
                      , containers
   other-modules:       RSolve.BrMonad
-                     , RSolve.Solver
+                     , RSolve.Infr
                      , RSolve.Logic
+                     , RSolve.HM.Core
+                     , RSolve.HM.Example
+                     , RSolve.Options.Core
+                     , RSolve.Options.Example

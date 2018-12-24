@@ -1,4 +1,4 @@
-module RSolve.Solver where
+module RSolve.Infr where
 import RSolve.BrMonad
 
 import qualified Data.Set  as S
@@ -6,43 +6,45 @@ import qualified Data.Map  as M
 import qualified Data.List as L
 
 type Addr = Int
-class Reference a where
+class Eq a => Reference a where
+  -- reference can be stored in Map
   isRef :: a  -> Maybe Addr
   mkRef :: Addr -> a
 
-class (Eq a, Reference a) => Unify a where
-  prune  :: a -> Br (LState a) Addr
+class Reference a => Unify a where
+  prune  :: a -> Br (LState a) a
   unify  :: a -> a -> Br (LState a) ()
 
 class Unify a => Complement a where
-  complement :: Addr -> Addr -> Br (LState a) ()
+  complement :: a -> a -> Br (LState a) ()
 
 class EnumSet a where
   toEnumerable :: Br (LState a) ()
 
 
 data Allocator a =
-  Allocator { storage :: M.Map Int a
-            , addr    :: Int }
+  Allocator { storage :: M.Map Addr a
+            , addr    :: Addr }
   deriving (Show)
 
 
 data LState a =
    LState { allocator  :: Allocator a
-          , negPairs   :: [(Int, Int)]
+          , negPairs   :: [(a, a)]
           , constrains :: [Br (LState a) Bool] }
 
 allocator'  st   (LState _ negs cs) = LState st negs cs
 negPairs'   negs (LState st _   cs) = LState st negs cs
 constrains' cs   (LState st negs _) = LState st negs cs
 
-alloc :: Reference a => a -> Allocator a -> (Int, Allocator a)
-alloc a (Allocator s c) =
-  case isRef a of
-    Just _ -> error "Allocation requires a value instead of a reference."
-    _      -> (c, Allocator (M.insert c a s) (c + 1))
 
-renew :: Reference a => Int -> a -> Allocator a -> Allocator a
+inc :: Reference a => Allocator a -> (Addr, Allocator a)
+inc (Allocator s c) = (c, Allocator s $ c + 1)
+
+alloc :: Reference a => a -> Allocator a -> (Addr, Allocator a)
+alloc a (Allocator s c) = (c, Allocator (M.insert c a s) (c + 1))
+
+renew :: Reference a => Addr -> a -> Allocator a -> Allocator a
 renew addr obj r@(Allocator s c) =
   case isRef obj of
     Just addr' | addr' == addr -> r -- avoid recursive definition
@@ -57,18 +59,32 @@ store a = do
 
 
 -- update state
-update  :: Reference a => Int -> a -> Br (LState a) ()
+update  :: Reference a => Addr -> a -> Br (LState a) ()
 update addr obj = do
   st <- getBy allocator
   putBy $ (allocator' . renew addr obj $ st)
 
 
-load :: Int -> Br (LState a) a
+load :: Addr -> Br (LState a) a
 load addr =
   getBy allocator >>= return . (flip (M.!) $ addr) . storage
 
 
-negUnify :: Int -> Int -> Br (LState a) ()
+  
+tryLoad :: Addr -> Br (LState a) (Maybe a)
+tryLoad addr =
+  getBy allocator >>= return . (M.lookup addr) . storage
+
+
+-- for the system which take leverage of generics
+new :: Reference a => Br (LState a) Addr
+new = do
+  st <- getBy allocator
+  let (addr', st') = inc st
+  _ <- putBy $ allocator' st'
+  return addr'
+
+negUnify :: Reference a => a -> a -> Br (LState a) ()
 negUnify a b = do
   negs <- getBy negPairs
   if check negs then
@@ -80,3 +96,7 @@ negUnify a b = do
       if (a', b') == (a, b) || (a', b') == (b, a)
       then False
       else check xs
+
+
+emptyAllocator = Allocator (M.empty) 0
+emptyLState    = LState emptyAllocator [] []

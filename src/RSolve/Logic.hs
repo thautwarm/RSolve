@@ -1,7 +1,7 @@
 {-# LANGUAGE GADTs  #-}
 module RSolve.Logic where
 import RSolve.BrMonad
-import RSolve.Solver
+import RSolve.Infr
 import Data.List (nub)
 
 data Cond a where
@@ -14,7 +14,10 @@ data Cond a where
    Imply :: Cond a -> Cond a -> Cond a
 
 solve :: Cond a -> Br (LState a) ()
-solve (Unify l r) = unify l r
+solve (Unify l r) = do
+  l <- prune l
+  r <- prune r
+  unify l r
 
 solve (Or l r)    = solve l `union` solve r
 
@@ -44,16 +47,20 @@ solveNeg :: Complement a => Br (LState a) ()
 solveNeg = do
   negs <- getBy negPairs
   negs <- pruneTuples negs
-  let negs' = nub (negs)
-  solveNeg' negs'
+  solveNeg' $ nub (negs)
   where
     pruneTuples [] = return []
     pruneTuples ((a, b):xs) = do
-      a <- prune (mkRef a)
-      b <- prune (mkRef b)
+      a <- prune a
+      b <- prune b
       xs' <- pruneTuples xs
-      let x' = if a > b then (a, b) else (b, a)
-      return $ x' : xs
+      let
+        process (Just a) (Just b) = x:xs
+          where
+            mkRef2 a b = (mkRef a, mkRef b) 
+            x = if a > b then mkRef2 a b else mkRef2 b a
+        process _ _ = (a, b):xs'
+      return $ process (isRef a) (isRef b)
     solveNeg' [] = return ()
     solveNeg' ((a,b):xs) =
       (a `complement` b) >> solveNeg' xs
@@ -73,7 +80,8 @@ solvePred = do
 require :: Unify a => a -> Br (LState a) a
 require a = do
   a <- prune a
-  load a
-
+  case isRef a of
+      Just a -> load a
+      _      -> return a
 
 
