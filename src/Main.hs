@@ -46,11 +46,10 @@ instance Unify Term where
     pruneSol l >>= \(lFrom, lxsm) ->
     pruneSol r >>= \(rFrom, rxsm) ->
     case (lxsm, rxsm) of
-       (Nothing,   Nothing )   -> update lFrom (Var rFrom)
+       (Nothing,   _)   -> update lFrom (Var rFrom)
        (Just lxs,  _) | S.null lxs -> reset
        (_, Just rxs)  | S.null rxs -> reset
        (Just _,    Nothing )   -> unify r l
-       (Nothing,   Just _  )   -> update lFrom (Var rFrom)
        (Just lxs,  Just rxs)   ->
         let xs = S.intersection lxs rxs in
         if S.null xs
