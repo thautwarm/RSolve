@@ -35,6 +35,7 @@ test = do
     _ <- solve $ Unify arrow_inst1 arrow_match
     _ <- solve $ Unify arrow_generic arrow_inst1
     _ <- solve $ Unify arrow_generic arrow_inst2
+    _ <- solveNeg
 
     mapM require [Var u1, Var u2, arrow_inst1, arrow_inst2, arrow_generic, arrow_match]
 

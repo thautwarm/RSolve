@@ -56,7 +56,6 @@ instance Unify Term where
         new <- store $ Sol xs
         update lFrom new >> update rFrom new
 
-instance Complement Term where
   complement l r = do
     (l, Just lxs) <- pruneSol l
     (r, Just rxs) <- pruneSol r
