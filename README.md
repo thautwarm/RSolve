@@ -1,7 +1,8 @@
 # RSolve
 
-A general solver for type checkers of programming languages and real world puzzles with complex constraints. 
+[![](https://img.shields.io/hackage/v/RSolve.svg)](hackage.haskell.org/package/RSolve)
 
+A general solver for type checkers of programming languages and real world puzzles with complex constraints.
 
 ## Preview
 
@@ -9,7 +10,7 @@ Here are 2 special cases presented in the following sections to show how powerfu
 
 ### The Most Graceful Hindley-Milner Unification
 
-Check `RSolve.HM.Core` and `RSolve.HM.Example`.  
+Check `RSolve.HM.Core` and `RSolve.HM.Example`.
 
 Uncomment the code in `Main.hs` could reproduce following program:
 
@@ -23,8 +24,8 @@ check = do
     u2 <- new
     u3 <- new
     u4 <- new
-    -- u1 -> u2 where u1, u2 is not generic 
-    let arrow_var = Op Arrow (Var u1) (Var u2)    
+    -- u1 -> u2 where u1, u2 is not generic
+    let arrow_var = Op Arrow (Var u1) (Var u2)
     -- int -> int
     let arrow_inst1 = Op Arrow i i
     -- float -> float
@@ -41,7 +42,6 @@ check = do
     _ <- solveNeg
 
     mapM require [Var u1, Var u2, arrow_inst1, arrow_inst2, arrow_generic, arrow_match]
-  
 ```
 
 output:
@@ -57,7 +57,7 @@ arrow_match : (Int -> Int)
 
 ### N-Option Puzzles
 
-This implememtation is presented at `RSolve.Options`,  which provides the abstractions to solve all kinds of puzzles described with options.
+This implementation is presented at `RSolve.Options`,  which provides the abstractions to solve all kinds of puzzles described with options.
 
 A Hello World program could be found at `src/Main.hs` which solves a complex problem described with following link:
 
@@ -75,8 +75,8 @@ test2 = do
   _ <- solve $ b `neq` c
   _ <- solveNeg  -- `Not` condition requires this
   _ <- solvePred -- unnecessary
-  mapM require [a, b, c] 
-  
+  mapM require [a, b, c]
+
 main = do
     format ["a", "b", "c"] . nub . L.map fst
     $ runBr test2 emptyLState
