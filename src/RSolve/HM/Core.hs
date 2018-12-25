@@ -22,7 +22,7 @@ data Prim = Int | Float | Char
 
 data Core where
     Prim   :: Prim -> Core
-    
+
     Op     :: TypeOp -> Core -> Core -> Core
 
     Forall :: [Id] -> Core -> Core
@@ -52,23 +52,17 @@ free m = mkFree
             M.findWithDefault a id m
 
 occur_in :: Addr -> Addr -> Br (LState Core) Bool
-occur_in l r =
-    contains (Var r)
+occur_in l = contains . Var
     where
         contains (Prim _) = return False
 
         contains (Var a) =
             if a == l then return True
-            else do
-                a <- tryLoad a
-                case a of
-                    Just a -> contains a 
-                    _ -> return False
+            else tryLoad a >>= \case
+                Just a -> contains a 
+                _ -> return False
 
-        contains (Op _ a b) = do
-            a <- contains a
-            b <- contains b
-            return $ a || b
+        contains (Op _ a b) = (||) <$> contains a <*> contains b
         contains (Forall _ a) = contains a
 
 instance Reference Core where
@@ -81,7 +75,7 @@ instance Unify Core where
     prune v@(Var a) = tryLoad a >>= \case
         Just var -> prune var
         _        -> return v
-    
+
     prune a@(Prim _) = return a
 
     prune (Forall a b) = Forall a <$> prune b
@@ -90,17 +84,17 @@ instance Unify Core where
     unify (Prim a) (Prim b) =
             if a == b then return ()
             else empty
-    
-    unify l@(Var a) r@(Var b) 
-        | a == b       = return ()
-        | otherwise    = do
+
+    unify l@(Var a) r@(Var b)
+        | a == b    = return ()
+        | otherwise = do
             recursive <- occur_in a b
             if recursive
             then error "ill formed definition like a = a -> b"
             else update a r
-       
+
     unify l r@(Var _) = unify r l
-    
+
     unify (Var id)  r = update id r
 
     -- type operators are not frist class 

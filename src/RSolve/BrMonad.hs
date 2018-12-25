@@ -15,7 +15,7 @@ instance Monad (Br s) where
   m >>= k =
     Br $ \s ->
        let xs = runBr m s
-       in concat[ runBr (k a) s | (a, s) <- xs]
+       in join [ runBr (k a) s | (a, s) <- xs]
   return a = Br $ \s -> [(a, s)]
 
 instance Alternative (Br s) where

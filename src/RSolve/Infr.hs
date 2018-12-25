@@ -65,7 +65,7 @@ update addr obj = getBy allocator >>= putBy . allocator' . renew addr obj
 
 load :: Addr -> Br (LState a) a
 load addr =
-  ((flip (M.!) addr) . storage) <$> getBy allocator
+  ((M.! addr) . storage) <$> getBy allocator
 
 
 tryLoad :: Addr -> Br (LState a) (Maybe a)
