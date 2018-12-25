@@ -1,6 +1,6 @@
 # RSolve
 
-[![](https://img.shields.io/hackage/v/RSolve.svg)](hackage.haskell.org/package/RSolve)
+[![](https://img.shields.io/hackage/v/RSolve.svg)](https://hackage.haskell.org/package/RSolve)
 
 A general solver for type checkers of programming languages and real world puzzles with complex constraints.
 
