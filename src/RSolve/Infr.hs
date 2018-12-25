@@ -1,6 +1,6 @@
 module RSolve.Infr where
 import RSolve.BrMonad
-
+import Control.Applicative
 import qualified Data.Set  as S
 import qualified Data.Map  as M
 import qualified Data.List as L
@@ -14,10 +14,11 @@ class Eq a => Reference a where
 class Reference a => Unify a where
   prune  :: a -> Br (LState a) a
   unify  :: a -> a -> Br (LState a) ()
-
-class Unify a => Complement a where
   complement :: a -> a -> Br (LState a) ()
-
+  complement a b = 
+        if a == b then return ()
+        else empty
+  
 class EnumSet a where
   toEnumerable :: Br (LState a) ()
 

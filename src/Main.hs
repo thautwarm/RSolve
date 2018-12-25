@@ -3,12 +3,12 @@ import RSolve.Options.Example
 import RSolve.HM.Example
 
 
---- test unification
--- main = hmUnificationExample
-
-
--- test 4-option puzzles
-main = optionExample
+main =
+    putStrLn "HM unification"   >>
+    hmUnificationExample        >>
+    putStrLn "4-option puzzles" >>
+    optionExample
+ 
 
 
 -- test2 = do

@@ -20,13 +20,14 @@ solve (Unify l r) = do
   r <- prune r
   unify l r
 
-solve (Or l r)    = solve l <|> solve r
+solve (Or l r)    =
+  solve l <|> solve (And (Not l) r)
 
 solve (And l r)   =
   solve l >> solve r
 
 solve (Imply l r) =
-  solve (Not l) <|> (solve l >> solve r)
+  solve (Not l) <|> solve r
 
 solve (Pred c)    = do
   cs <- getBy constrains
@@ -44,7 +45,7 @@ solve (Not emmm)  =
      r <- prune r
      negUnify l r
 
-solveNeg :: Complement a => Br (LState a) ()
+solveNeg :: Unify a => Br (LState a) ()
 solveNeg = do
   negs <- getBy negPairs
   negs <- pruneTuples negs

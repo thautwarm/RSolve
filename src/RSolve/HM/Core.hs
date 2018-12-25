@@ -51,8 +51,8 @@ free m = mkFree
         mkFree a@(Var id) =
             M.findWithDefault a id m
 
-occur_in :: Addr -> Addr -> Br (LState Core) Bool
-occur_in l r =
+occurIn :: Addr -> Addr -> Br (LState Core) Bool
+occurIn l r =
     contains (Var r)
     where
         contains (Prim _) = return False
@@ -94,7 +94,7 @@ instance Unify Core where
     unify l@(Var a) r@(Var b) 
         | a == b       = return ()
         | otherwise    = do
-            recursive <- occur_in a b
+            recursive <- occurIn a b
             if recursive
             then error "ill formed definition like a = a -> b"
             else update a r
