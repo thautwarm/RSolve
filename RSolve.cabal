@@ -1,7 +1,8 @@
 name:                RSolve
 version:             0.1.0.0
--- synopsis:
--- description:
+synopsis:            A general solver for equations
+description:         A general solver for type checkers of programming languages
+                     and real world puzzles with complex constraints.
 homepage:            https://github.com/thautwarm/Rsolver#readme
 license:             MIT
 license-file:        LICENSE
