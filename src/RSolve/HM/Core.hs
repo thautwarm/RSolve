@@ -36,9 +36,8 @@ instance Show Core where
         "(" ++ show a ++ " -> " ++ show b ++ ")"
     show (Op Join a b) = show a ++ ", " ++ show b
     show (Op Stmt a b) = show a ++ ";\n" ++ show b
-    show (Forall xs b)  = 
-        let 
-            f a b = a ++ " a" ++ show b
+    show (Forall xs b)  =
+        let f a b = a ++ " a" ++ show b
         in foldl f "forall " xs ++ "." ++ show b
     show (Var a) = "a" ++ show a
 
@@ -59,7 +58,7 @@ occurIn l = contains . Var
         contains (Var a) =
             if a == l then return True
             else tryLoad a >>= \case
-                Just a -> contains a 
+                Just a -> contains a
                 _ -> return False
 
         contains (Op _ a b) = (||) <$> contains a <*> contains b
@@ -69,7 +68,7 @@ instance Reference Core where
     mkRef = Var
     isRef (Var a) = Just a
     isRef  _      = Nothing
-        
+
 
 instance Unify Core where
     prune v@(Var a) = tryLoad a >>= \case
@@ -84,8 +83,8 @@ instance Unify Core where
     unify (Prim a) (Prim b) =
             if a == b then return ()
             else empty
-    
-    unify l@(Var a) r@(Var b) 
+
+    unify l@(Var a) r@(Var b)
         | a == b    = return ()
         | otherwise = do
             recursive <- occurIn a b
@@ -97,8 +96,8 @@ instance Unify Core where
 
     unify (Var id)  r = update id r
 
-    -- type operators are not frist class 
-    unify (Op opl l1 l2) (Op opr r1 r2) = 
+    -- type operators are not frist class
+    unify (Op opl l1 l2) (Op opr r1 r2) =
         if opl /= opr then empty
         else
             unify l1 r1 >> unify l2 r2
@@ -106,7 +105,7 @@ instance Unify Core where
     unify (Forall freevars poly) r = do
         pairs <- mapM freepair freevars
         let freemap = M.fromList pairs
-        let l = free freemap poly 
+        let l = free freemap poly
         unify l r
         where
             freepair freevar = (freevar,) <$> mkRef <$> new

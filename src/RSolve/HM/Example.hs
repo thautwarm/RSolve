@@ -16,9 +16,9 @@ test = do
     u3 <- new
     u4 <- new
 
-    -- u1 -> u2 where u1, u2 is not generic 
+    -- u1 -> u2 where u1, u2 is not generic
     let arrow_var = Op Arrow (Var u1) (Var u2)
-    
+
     -- int -> int
     let arrow_inst1 = Op Arrow i i
 
@@ -27,7 +27,7 @@ test = do
 
 
     let arrow_match = Op Arrow (Var u4) (Var u4)
-    
+
     -- a generic function
     let arrow_generic = Forall [u3] $ Op Arrow (Var u3) (Var u3)
 
@@ -50,5 +50,5 @@ formayMany fields lst =
 
 
 hmUnificationExample = do
-    let fields = ["u1", "u2", "arrow_inst1", "arrow_inst2", "arrow_generic", "arrow_match"] 
+    let fields = ["u1", "u2", "arrow_inst1", "arrow_inst2", "arrow_generic", "arrow_match"]
     formayMany fields . map fst $ runBr test emptyLState

@@ -8,7 +8,7 @@ main =
     hmUnificationExample        >>
     putStrLn "4-option puzzles" >>
     optionExample
- 
+
 
 
 -- test2 = do
@@ -19,9 +19,8 @@ main =
 --   _ <- solve $ b `neq` c
 --   _ <- solveNeg  -- `Not` condition requires this
 --   _ <- solvePred -- unnecessary
---   mapM require [a, b, c] 
-  
+--   mapM require [a, b, c]
+
 -- main = do
 --     format ["a", "b", "c"] . nub . L.map fst
 --     $ runBr test2 emptyLState
-  

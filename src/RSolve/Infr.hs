@@ -15,10 +15,10 @@ class Reference a => Unify a where
   prune  :: a -> Br (LState a) a
   unify  :: a -> a -> Br (LState a) ()
   complement :: a -> a -> Br (LState a) ()
-  complement a b = 
+  complement a b =
         if a == b then return ()
         else empty
-  
+
 class EnumSet a where
   toEnumerable :: Br (LState a) ()
 

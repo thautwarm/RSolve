@@ -59,7 +59,7 @@ solveNeg = do
       let
         process (Just a) (Just b) = x:xs
           where
-            mkRef2 a b = (mkRef a, mkRef b) 
+            mkRef2 a b = (mkRef a, mkRef b)
             x = if a > b then mkRef2 a b else mkRef2 b a
         process _ _ = (a, b):xs'
       return $ process (isRef a) (isRef b)
