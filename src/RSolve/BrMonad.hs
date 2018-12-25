@@ -1,5 +1,6 @@
 module RSolve.BrMonad where
 import Control.Monad
+import Control.Monad.Fail
 import Control.Applicative
 
 newtype Br s a = Br {runBr :: s -> [(a, s)]}
@@ -10,6 +11,9 @@ instance Functor (Br s) where
 instance Applicative (Br s) where
   pure = return
   (<*>)  = ap
+
+instance MonadFail (Br s) where
+  fail _ = empty
 
 instance Monad (Br s) where
   m >>= k =

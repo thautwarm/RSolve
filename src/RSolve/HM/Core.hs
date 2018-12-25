@@ -1,4 +1,4 @@
-{-# LANGUAGE GADTs  #-}
+{-# LANGUAGE GADTs #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE TupleSections #-}
