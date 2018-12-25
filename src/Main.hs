@@ -4,11 +4,11 @@ import RSolve.HM.Example
 
 
 --- test unification
-main = hmUnificationExample
+-- main = hmUnificationExample
 
 
 -- test 4-option puzzles
--- main = optionExample
+main = optionExample
 
 
 -- test2 = do

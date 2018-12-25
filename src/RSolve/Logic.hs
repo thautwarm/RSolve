@@ -26,7 +26,7 @@ solve (And l r)   =
   solve l >> solve r
 
 solve (Imply l r) =
-  (solve l >> solve r) <|> solve (Not l)
+  solve (Not l) <|> (solve l >> solve r)
 
 solve (Pred c)    = do
   cs <- getBy constrains
@@ -38,7 +38,7 @@ solve (Not emmm)  =
     Not emmm   -> solve emmm
     Or     l r -> solve $ And (Not l)(Not r)
     And    l r -> solve $ Or  (Not l)(Not r)
-    Imply  l r -> solve $ Imply l (Not r)
+    Imply  l r -> solve $ And  l (Not r)
     Unify  l r -> do
      l <- prune l
      r <- prune r
