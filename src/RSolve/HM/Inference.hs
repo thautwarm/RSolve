@@ -1,4 +1,5 @@
--- | HM unification implementations based on propositional logics.
+-- | HM unification implementations based on propositional logics,
+--   based on nominal type system.
 -- Author: Taine Zhao(thautwarm)
 -- Date: 2019-08-04
 -- License: MIT
@@ -50,7 +51,7 @@ instance Show T where
         TFresh s    -> s
         a :-> b     -> showNest a ++ " -> " ++ show b
         a :*  b     -> showNest a ++ " * " ++ show b
-        TForall l t -> "forall " ++ (L.intercalate " " $ S.toList l) ++ ". " ++ show t
+        TForall l t -> "forall " ++ (unwords $ S.toList l) ++ ". " ++ show t
         TApp t1 t2  -> show t1 ++ " " ++ showNest t2
         TNom i       -> "@t" ++ show i
         where
