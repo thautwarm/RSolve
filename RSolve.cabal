@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f953584e59b9fe51c70a9604a10360f4c27bbec477eda9986e162b13a888ef1e
+-- hash: 50ebc874887515de4b03520f0f5e4b358b48444bfcfb775b65f35d97f7e1424b
 
 name:           RSolve
 version:        1.0.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      RSolve.HM.Inference
       RSolve.Logic
       RSolve.MapLike
       RSolve.MultiState
@@ -39,6 +40,7 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , lens
     , mtl
   default-language: Haskell2010
 
@@ -53,6 +55,7 @@ executable RSolve-exe
       RSolve
     , base >=4.7 && <5
     , containers
+    , lens
     , mtl
   default-language: Haskell2010
 
@@ -68,5 +71,6 @@ test-suite RSolve-test
       RSolve
     , base >=4.7 && <5
     , containers
+    , lens
     , mtl
   default-language: Haskell2010
