@@ -64,7 +64,7 @@ only the 4-th(1-based indexing) equation group
 will produce a feasible solution because symbol `a` can
 only hold one value.
 
-When do we need a solver? For instance, type checking.
+When do we need a solver? For instance, type checking&inference.
 
 In this case, we need type checking environments to represent the checking states:
 
