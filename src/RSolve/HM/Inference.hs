@@ -26,7 +26,7 @@ import qualified Data.Set  as S
 
 type Fix a = a -> a
 
-infixl 6 :->
+infixl 6 :->, :*
 
 data T
     = TVar Int
@@ -82,9 +82,9 @@ instance AtomF Unif where
     notA a@Unif {neq} = [a {neq = not neq}]
 
 data TCEnv = TCEnv {
-          _noms  :: M.Map Int T
-        , _tvars :: M.Map Int T
-        , _neqs  :: S.Set (T, T)
+          _noms  :: M.Map Int T  -- nominal type ids
+        , _tvars :: M.Map Int T  -- type variables
+        , _neqs  :: S.Set (T, T) -- negation constraints
     }
     deriving (Show)
 

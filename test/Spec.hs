@@ -36,8 +36,6 @@ import qualified Data.Set as S
 import Data.List (delete)
 import Control.Monad
 
-
-
 data Value = A | B | C | D
     deriving (Show, Eq, Ord, Enum)
 
@@ -51,7 +49,6 @@ instance AtomF At where
         in [At {at_l = lhs, at_r = rhs'} | rhs' <- contrasts]
 
 infix 6 <==>
-(<==>) :: String -> Value -> WFF At
 s <==> v = Atom $ At s v
 equations = do
     assert $ "a" <==> A :||: "a" <==> B

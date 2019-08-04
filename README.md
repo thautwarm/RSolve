@@ -4,90 +4,143 @@
 
 A general solver for type checkers of programming languages and real world puzzles with complex constraints.
 
-## Preview
+The README is going to get updated.
 
-Here are 2 special cases presented in the following sections to show how powerful `RSolve` is.
+## Propositional Logic
 
-### The Most Graceful Hindley-Milner Unification
+To take advantage of RSolve, we should implement 2 classes:
 
-Check `RSolve.HM.Core` and `RSolve.HM.Example`.
+- `AtomF`, which stands for the atom formula.
 
-Uncomment the code in `Main.hs` could reproduce following program:
+- `CtxSolver`, which stands for the way to solve a bunch of atom formulas.
 
-```haskell
-check = do
-    let i = Prim Int
-    let f = Prim Float
-    let arrow = Op Arrow i f
-    -- u means undecided
-    u1 <- new
-    u2 <- new
-    u3 <- new
-    u4 <- new
-    -- u1 -> u2 where u1, u2 is not generic
-    let arrow_var = Op Arrow (Var u1) (Var u2)
-    -- int -> int
-    let arrow_inst1 = Op Arrow i i
-    -- float -> float
-    let arrow_inst2 = Op Arrow f f
-    -- a generic function
-    let arrow_generic = Forall [u3] $ Op Arrow (Var u3) (Var u3)
-
-    let arrow_match = Op Arrow (Var u4) (Var u4)
-
-    _ <- solve $ Unify arrow arrow_var
-    _ <- solve $ Unify arrow_inst1 arrow_match
-    _ <- solve $ Unify arrow_generic arrow_inst1
-    _ <- solve $ Unify arrow_generic arrow_inst2
-    _ <- solveNeg
-
-    mapM require [Var u1, Var u2, arrow_inst1, arrow_inst2, arrow_generic, arrow_match]
-```
-
-output:
-
-```
-u1 : Int
-u2 : Float
-arrow_inst1 : (Int -> Int)
-arrow_inst2 : (Float -> Float)
-arrow_generic : forall  a2.(a2 -> a2)
-arrow_match : (Int -> Int)
-```
-
-### N-Option Puzzles
-
-This implementation is presented at `RSolve.Options`,  which provides the abstractions to solve all kinds of puzzles described with options.
-
-A Hello World program could be found at `src/Main.hs` which solves a complex problem described with following link:
-
-https://www.zhihu.com/question/68411978/answer/558913247.
-
-
-However, the much easier cases taking the same background as above problem (logic constraints described with four options `A, B, C, D`) could be enjoyale:
+However we might not need to a solver sometimes:
 
 ```haskell
-test2 = do
-  a <- store $ sol [A, B, C]
-  b <- store $ sol [B, C, D]
-  c <- store $ sol [C]
-  _ <- solve $ a `eq`  b
-  _ <- solve $ b `neq` c
-  _ <- solveNeg  -- `Not` condition requires this
-  _ <- solvePred -- unnecessary
-  mapM require [a, b, c]
+data Value = A | B | C | D
+    deriving (Show, Eq, Ord, Enum)
+
+data At = At {at_l :: String, at_r :: Value}
+    deriving (Show, Eq, Ord)
+
+instance AtomF At where
+    notA At {at_l = lhs, at_r = rhs} =
+        let wholeSet  = enumFrom (toEnum 0) :: [Value]
+            contrasts = delete rhs wholeSet
+        in [At {at_l = lhs, at_r = rhs'} | rhs' <- contrasts]
+
+infix 6 <==>
+s <==> v = Atom $ At s v
+
+equations = do
+    assert $ "a" <==> A :||: "a" <==> B
+    assert $ Not ("a" <==> A)
+
+main =
+  let equationGroups = unionEquations equations
+  in forM equationGroups print
+```
+produces
+```haskell
+[At {at_l = "a", at_r = A},At {at_l = "a", at_r = B}]
+[At {at_l = "a", at_r = A},At {at_l = "a", at_r = C}]
+[At {at_l = "a", at_r = A},At {at_l = "a", at_r = D}]
+[At {at_l = "a", at_r = B}]
+[At {at_l = "a", at_r = B},At {at_l = "a", at_r = C}]
+[At {at_l = "a", at_r = B},At {at_l = "a", at_r = C},At {at_l = "a", at_r = D}]
+[At {at_l = "a", at_r = B},At {at_l = "a", at_r = D}]
+```
+
+According to the property of the problem domain, we can figure out that
+only the 4-th(1-based indexing) equation group
+`[At {at_l = "a", at_r = B}]`
+will produce a feasible solution because symbol `a` can
+only hold one value.
+
+When do we need a solver? For instance, type checking.
+
+In this case, we need type checking environments to represent the checking states:
+
+```haskell
+data TCEnv = TCEnv {
+          _noms  :: M.Map Int T  -- nominal type ids
+        , _tvars :: M.Map Int T  -- type variables
+        , _neqs  :: S.Set (T, T) -- negation constraints
+    }
+    deriving (Show)
+
+emptyTCEnv = TCEnv M.empty M.empty S.empty
+```
+
+For sure we also need to represent the type:
+
+```haskell
+data T
+    = TVar Int
+    | TFresh String
+    | T :-> T
+    | T :*  T -- tuple
+    | TForall (S.Set String) T
+    | TApp T T -- type application
+    | TNom Int -- nominal type index
+    deriving (Eq, Ord)
+```
+
+Then the atom formula of HM unification is:
+
+```haskell
+data Unif
+    = Unif {
+          lhs :: T
+        , rhs :: T
+        , neq :: Bool -- lhs /= rhs or  lhs == rhs?
+      }
+  deriving (Eq, Ord)
+```
+
+We then need to implement this:
+
+```haskell
+-- class AtomF a => CtxSolver s a where
+--     solve :: a -> MS s ()
+prune :: T -> MS TCEnv T -- MS: MultiState
+instance CtxSolver TCEnv Unif where
+  solver = ...
+````
+
+Finally we got this:
+
+```haskell
+infixl 6 <=>
+a <=> b = Atom $ Unif {lhs=a, rhs=b, neq=False}
+solu = do
+    a <- newTVar
+    b <- newTVar
+    c <- newTVar
+    d <- newTVar
+    let [eqs] = unionEquations $
+                do
+                assert $ TVar a <=> TForall (S.fromList ["s"]) ((TFresh "s") :-> (TFresh "s" :* TFresh "s"))
+                assert $ TVar a <=> (TVar b :-> (TVar c :* TVar d))
+                assert $ TVar d <=> TNom 1
+    -- return eqs
+    forM_ eqs solve
+    return eqs
+    a <- prune $ TVar a
+    b <- prune $ TVar b
+    c <- prune $ TVar c
+    return (a, b, c)
+
+test :: Eq a => String -> a -> a -> IO ()
+test msg a b
+    | a == b = return ()
+    | otherwise = print msg
 
 main = do
-    format ["a", "b", "c"] . nub . L.map fst
-    $ runBr test2 emptyLState
-```
+    forM (unionEquations equations) print
 
-output:
-
-```
-λ stack exec RSolve
-====
-"a" : Sol (fromList [B])
-"b" : Sol (fromList [B])
-"c" : Sol (fromList [C])
+    let (a, b, c):_ = map fst $ runMS solu emptyTCEnv
+    test "1 failed" (show a) "@t1 -> @t1 * @t1"
+    test "2 failed" (show b) "@t1"
+    test "3 failed" (show c) "@t1"
 ```
