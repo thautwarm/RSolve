@@ -25,35 +25,6 @@
 --     format ["a", "b", "c"] . nub . L.map fst
 --     $ runBr test2 emptyLState
 
--- import RSolve.PropLogic
--- import RSolve.MultiState
-
--- import Data.List (delete)
--- import Control.Monad
-
-
-
--- data Value = A | B | C | D
---     deriving (Show, Eq, Ord, Enum)
-
--- data At = At {lhs :: String, rhs :: Value}
---     deriving (Show, Eq, Ord)
-
--- instance AtomF At where
---     notA At {lhs = lhs, rhs = rhs} =
---         let wholeSet  = enumFrom (toEnum 0) :: [Value]
---             contrasts = delete rhs wholeSet
---         in [At {lhs = lhs, rhs = rhs'} | rhs' <- contrasts]
-
--- infix 6 <=>
--- (<=>) :: String -> Value -> WFF At
--- s <=> v = Atom $ At s v
--- equations = do
---     assert $ "a" <=> A :||: "a" <=> B
---     assert $ Not ("a" <=> A)
--- main = do
---     forM (unionEquations equations) print
-
 import RSolve.HM.Inference
 import RSolve.PropLogic
 import RSolve.MultiState
@@ -61,6 +32,31 @@ import RSolve.Solver
 import Control.Monad
 
 import qualified Data.Set as S
+
+import Data.List (delete)
+import Control.Monad
+
+
+
+data Value = A | B | C | D
+    deriving (Show, Eq, Ord, Enum)
+
+data At = At {at_l :: String, at_r :: Value}
+    deriving (Show, Eq, Ord)
+
+instance AtomF At where
+    notA At {at_l = lhs, at_r = rhs} =
+        let wholeSet  = enumFrom (toEnum 0) :: [Value]
+            contrasts = delete rhs wholeSet
+        in [At {at_l = lhs, at_r = rhs'} | rhs' <- contrasts]
+
+infix 6 <==>
+(<==>) :: String -> Value -> WFF At
+s <==> v = Atom $ At s v
+equations = do
+    assert $ "a" <==> A :||: "a" <==> B
+    assert $ Not ("a" <==> A)
+
 
 infixl 6 <=>
 a <=> b = Atom $ Unif {lhs=a, rhs=b, neq=False}
@@ -86,9 +82,11 @@ test :: Eq a => String -> a -> a -> IO ()
 test msg a b
     | a == b = return ()
     | otherwise = print msg
-main =
+
+main = do
+    forM (unionEquations equations) print
+
     let (a, b, c):_ = map fst $ runMS solu emptyTCEnv
-    in do
-        test "1 failed" (show a) "@t1 -> @t1 * @t1"
-        test "2 failed" (show b) "@t1"
-        test "3 failed" (show c) "@t1"
+    test "1 failed" (show a) "@t1 -> @t1 * @t1"
+    test "2 failed" (show b) "@t1"
+    test "3 failed" (show c) "@t1"
