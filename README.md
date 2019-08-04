@@ -8,6 +8,13 @@ The README is going to get updated.
 
 ## Propositional Logic
 
+RSolve uses [Disjunctive normal form](https://en.wikipedia.org/wiki/Disjunctive_normal_form) to solve logic problems.
+
+This disjunctive normal form works naturally with the logic problems where the atom formulas can be generalized to an arbitrary equation in the problem domain by introducing a problem domain specific solver. A vivid
+example could be found at `RSolve.HM.Inference`, where
+I implemented an extended algo-W for [HM unification](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system).
+
+
 To take advantage of RSolve, we should implement 2 classes:
 
 - `AtomF`, which stands for the atom formula.
