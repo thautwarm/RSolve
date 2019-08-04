@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d0f032daa8af811c72422a5780ec080c28519545840fbec7da7f8874d9ac3f9c
+-- hash: f953584e59b9fe51c70a9604a10360f4c27bbec477eda9986e162b13a888ef1e
 
 name:           RSolve
-version:        0.1.0.0
+version:        1.0.0.0
 description:    A general solver for equations
 homepage:       https://github.com/thautwarm/RSolve#readme
 bug-reports:    https://github.com/thautwarm/RSolve/issues
@@ -31,6 +31,7 @@ library
       RSolve.MapLike
       RSolve.MultiState
       RSolve.PropLogic
+      RSolve.Solver
   other-modules:
       Paths_RSolve
   hs-source-dirs:

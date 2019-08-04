@@ -1,3 +1,7 @@
+-- | state monads extended to have branches
+-- Author: Taine Zhao(thautwarm)
+-- Date: 2018-12
+-- License: MIT
 module RSolve.MultiState where
 import Control.Monad
 import Control.Monad.Fail

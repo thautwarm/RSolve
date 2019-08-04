@@ -49,4 +49,5 @@ s <=> v = Atom $ At s v
 equations = do
     assert $ "a" <=> A :||: "a" <=> B
     assert $ Not ("a" <=> A)
-main = forM_ (map snd $ runMS equations []) print
+main = do
+    forM (unionEquations equations) print
