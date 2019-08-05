@@ -10,7 +10,7 @@
 {-# LANGUAGE ViewPatterns #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module RSolve.HM.Inference
+module RSolve.HM
 where
 import RSolve.Logic
 import RSolve.Solver

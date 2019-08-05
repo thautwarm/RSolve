@@ -1,2 +1,2 @@
 module Main where
-main = putStrLn "hmmm"
+main = putStrLn "No CLI support yet"

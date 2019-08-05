@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 50ebc874887515de4b03520f0f5e4b358b48444bfcfb775b65f35d97f7e1424b
+-- hash: e5b30745fe99238706cc93bcd6a0c1fe3d35090d5dc5cabf244120d6d382d56c
 
 name:           RSolve
 version:        1.0.0.0
@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      RSolve.HM.Inference
+      RSolve.HM
       RSolve.Logic
       RSolve.MapLike
       RSolve.MultiState

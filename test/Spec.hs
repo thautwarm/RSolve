@@ -25,7 +25,7 @@
 --     format ["a", "b", "c"] . nub . L.map fst
 --     $ runBr test2 emptyLState
 
-import RSolve.HM.Inference
+import RSolve.HM
 import RSolve.PropLogic
 import RSolve.MultiState
 import RSolve.Solver

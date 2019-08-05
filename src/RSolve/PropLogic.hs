@@ -37,7 +37,7 @@ normal = \case
     p1 :||: p2  -> normal p1 :|| normal (Not p1 :&&: p2)
     Not (Atom a) ->
         case map AtomN $ notA a of
-            hd:tl -> foldl (\a b -> a :|| b) hd tl
+            hd:tl -> foldl (:||) hd tl
             []    -> error $ "Supplementary set of " ++ show a ++ " is empty!"
     Not (Not p)  -> normal p
     Not (p1 :&&: p2) -> normal (Not p1) :|| normal (Not p2)

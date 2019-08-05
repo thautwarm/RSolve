@@ -2,16 +2,16 @@
 
 [![](https://img.shields.io/hackage/v/RSolve.svg)](https://hackage.haskell.org/package/RSolve)
 
-A general solver for type checkers of programming languages and real world puzzles with complex constraints.
+NOTE: NO LONGER for general logic programming, this package is now dedicated for the simple propositional logic.
 
 The README is going to get updated.
 
 ## Propositional Logic
 
-RSolve uses [Disjunctive normal form](https://en.wikipedia.org/wiki/Disjunctive_normal_form) to solve logic problems.
+RSolve uses [disjunctive normal form](https://en.wikipedia.org/wiki/Disjunctive_normal_form) to solve logic problems.
 
 This disjunctive normal form works naturally with the logic problems where the atom formulas can be generalized to an arbitrary equation in the problem domain by introducing a problem domain specific solver. A vivid
-example could be found at `RSolve.HM.Inference`, where
+example can be found at `RSolve.HM`, where
 I implemented an extended algo-W for [HM unification](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system).
 
 
