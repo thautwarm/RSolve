@@ -7,8 +7,9 @@ cabal-version: 1.12
 -- hash: e5b30745fe99238706cc93bcd6a0c1fe3d35090d5dc5cabf244120d6d382d56c
 
 name:           RSolve
-version:        1.0.0.0
+version:        2.0.0.0
 description:    A general solver for equations
+category:       Logic,Unification
 homepage:       https://github.com/thautwarm/RSolve#readme
 bug-reports:    https://github.com/thautwarm/RSolve/issues
 author:         thautwarm
