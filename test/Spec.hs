@@ -52,7 +52,9 @@ infix 6 <==>
 s <==> v = Atom $ At s v
 equations = do
     assert $ "a" <==> A :||: "a" <==> B
+    assert $ "b" <==> C :||: "b" <==> D
     assert $ Not ("a" <==> A)
+    assert $ Not ("a" <==> B :=>: "b" <==> C)
 
 
 infixl 6 <=>
@@ -67,9 +69,7 @@ solu = do
                 assert $ TVar a <=> TForall (S.fromList ["s"]) ((TFresh "s") :-> (TFresh "s" :* TFresh "s"))
                 assert $ TVar a <=> (TVar b :-> (TVar c :* TVar d))
                 assert $ TVar d <=> TNom 1
-    -- return eqs
     forM_ eqs solve
-    return eqs
     a <- prune $ TVar a
     b <- prune $ TVar b
     c <- prune $ TVar c
@@ -81,7 +81,10 @@ test msg a b
     | otherwise = print msg
 
 main = do
-    forM (unionEquations equations) print
+    forM (unionEquations equations) $ \xs ->
+        case xs of
+            [a, b] -> print xs
+            _      -> return ()
 
     let (a, b, c):_ = map fst $ runMS solu emptyTCEnv
     test "1 failed" (show a) "@t1 -> @t1 * @t1"

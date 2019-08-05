@@ -15,13 +15,18 @@ import Control.Applicative ((<|>))
 import qualified Data.Set as S
 
 infixl 5 :&&, :&&:
-infixl 3 :||, :||:
+infixl 3 :||, :||:, :=>:
 
 data WFF a
+    -- Atom formula, should be specified by the problem
     = Atom a
     | Not  (WFF a)
+    -- And
     | WFF a :&&: WFF a
+    -- Or
     | WFF a :||: WFF a
+    -- Implication
+    | WFF a :=>:  WFF a
     deriving (Functor, Eq, Ord)
 -- normalized WWF
 data NF a
@@ -42,6 +47,7 @@ normal = \case
     Not (Not p)  -> normal p
     Not (p1 :&&: p2) -> normal (Not p1) :|| normal (Not p2)
     Not (p1 :||: p2) -> normal (Not p1) :&& normal (Not p2)
+    Not (p1 :=>: p2) -> normal (Not p1 :||: p2)
 
 assertNF :: AtomF a => NF a -> MS (S.Set a) ()
 assertNF = \case
