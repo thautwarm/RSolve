@@ -18,17 +18,18 @@ infixl 5 :&&, :&&:
 infixl 3 :||, :||:, :=>:
 
 data WFF a
-    -- Atom formula, should be specified by the problem
+    -- | Atom formula, should be specified by the problem
     = Atom a
     | Not  (WFF a)
-    -- And
+    -- | And
     | WFF a :&&: WFF a
-    -- Or
+    -- | Or
     | WFF a :||: WFF a
-    -- Implication
+    -- | Implication
     | WFF a :=>:  WFF a
     deriving (Functor, Eq, Ord)
--- normalized WWF
+
+-- | normalized WWF, where '[NF a]' the disjunctive normal form.
 data NF a
     = AtomN a
     | NF a :&& NF a
@@ -55,9 +56,13 @@ assertNF = \case
     p1 :&& p2 -> assertNF p1 >> assertNF p2
     p1 :|| p2 -> assertNF p1 <|> assertNF p2
 
+
+-- | Use a propositinal logic formula to build logic equations
+--   incrementally.
 assert :: AtomF a => WFF a -> MS (S.Set a) ()
 assert = assertNF . normal
 
+-- | Produced a list of disjunctions of conjunctive clauses.
 unionEquations :: AtomF a  => MS (S.Set a) () -> [[a]]
 unionEquations m =
     -- get states
